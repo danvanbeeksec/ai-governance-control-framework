@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.26,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-governance-control-framework"
+version = "0.1.0"
+description = "Installable distribution of the Independent AI Control Library"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Dan Van Beek" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Repository = "https://github.com/danvanbeeksec/ai-governance-control-framework"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_governance_control_framework"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"data/controls.yaml" = "ai_governance_control_framework/resources/controls.yaml"

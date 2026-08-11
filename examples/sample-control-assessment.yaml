@@ -1,0 +1,32 @@
+example_version: "1.0"
+status: synthetic_example
+system:
+  system_id: SYN-AI-001
+  name: Fictional Knowledge Assistant
+  purpose: Answer employee questions using approved synthetic policy content.
+  owner: Fictional Business Owner
+  lifecycle_state: pilot
+  data_categories: [synthetic_internal_content]
+  capabilities: [retrieval_augmented_generation]
+  external_actions: false
+assessment:
+  framework_version: "0.1.0"
+  assessed_on: "2026-08-11"
+  controls:
+    - control_id: AI-GOV-003
+      applicability: applicable
+      status: implemented
+      rationale: The pilot is within the defined AI inventory scope.
+      evidence:
+        - type: synthetic_inventory_record
+          reference: EXAMPLE-EVIDENCE-001
+      open_actions:
+        - Verify inventory reconciliation before production release.
+    - control_id: AI-AGT-002
+      applicability: not_applicable
+      status: not_applicable
+      rationale: The fictional pilot has no tools, connectors, write access, or external actions.
+      approval_reference: EXAMPLE-DECISION-001
+limitations:
+  - This record is fictional and does not demonstrate that any real control is effective.
+  - Applicability and evidence sufficiency require qualified organization-specific review.

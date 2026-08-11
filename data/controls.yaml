@@ -1,0 +1,514 @@
+schema_version: "1.0"
+library:
+  name: Independent AI Control Library
+  version: "0.1.0"
+  status: ready_for_review
+  description: >-
+    An independently authored, technology-neutral control library for enterprise AI
+    governance and individual AI systems. Applicability statements are contextual
+    triggers, not risk-tier selection rules.
+  limitations:
+    - Does not establish legal compliance, certification, or standards conformity.
+    - Requires organization-specific tailoring, ownership, testing, and approval.
+    - Does not contain a risk-tier selection or recommendation engine.
+
+reference_catalog:
+  NIST-AI-RMF: NIST Artificial Intelligence Risk Management Framework 1.0
+  NIST-AI-600-1: NIST AI RMF Generative Artificial Intelligence Profile
+  ISO-IEC-42001: ISO/IEC 42001 AI management systems
+  ISO-IEC-23894: ISO/IEC 23894 AI risk management guidance
+  OWASP-LLM: OWASP Top 10 for LLM Applications 2025
+  OWASP-AGENTIC: OWASP Top 10 for Agentic Applications 2026
+  OWASP-AGENTIC-STATE: OWASP State of Agentic AI Security and Governance
+
+controls:
+  - control_id: AI-GOV-001
+    domain: administrative_governance
+    layer: enterprise
+    title: AI governance mandate and decision rights
+    objective: Establish accountable authority for governing AI across the organization.
+    requirement: >-
+      The organization shall define and approve an AI governance mandate that assigns
+      decision rights, accountable roles, escalation paths, oversight responsibilities,
+      and authority to impose conditions, accept risk, suspend use, or require retirement.
+    applicability: Applies to every organization developing, procuring, deploying, or permitting AI use.
+    evidence_examples: [approved charter, responsibility matrix, committee terms, delegated authority record]
+    implementation_notes: Separate accountable ownership from advisory review and document conflicts or overlaps with existing risk functions.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-GOV-002
+    domain: administrative_governance
+    layer: enterprise
+    title: AI policy and acceptable-use boundaries
+    objective: Communicate permitted, restricted, and prohibited AI activities.
+    requirement: >-
+      The organization shall maintain approved AI policies and supporting guidance that
+      define authorized use, prohibited practices, user responsibilities, data boundaries,
+      review triggers, exception handling, and consequences of noncompliance.
+    applicability: Applies whenever personnel or third parties may acquire, build, access, or use AI on the organization's behalf.
+    evidence_examples: [approved policy, acceptable-use standard, user guidance, exception register, policy acknowledgements]
+    implementation_notes: Align with security, privacy, records, procurement, intellectual-property, and incident policies without duplicating them.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001]
+
+  - control_id: AI-GOV-003
+    domain: administrative_governance
+    layer: both
+    title: AI inventory and accountable ownership
+    objective: Maintain visibility and accountability throughout the AI portfolio.
+    requirement: >-
+      The organization shall maintain a versioned inventory of AI systems and material AI
+      use cases, with a named business owner, system owner, purpose, lifecycle state,
+      deployment context, model or service dependencies, data categories, and current review status.
+    applicability: Applies to proposed, experimental, production, embedded, vendor-provided, and materially changed AI uses.
+    evidence_examples: [AI inventory, ownership attestations, architecture records, discovery reconciliation, lifecycle reports]
+    implementation_notes: Define scope rules for embedded features, user-acquired tools, experiments, models, agents, and retired systems.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894, OWASP-AGENTIC-STATE]
+
+  - control_id: AI-GOV-004
+    domain: administrative_governance
+    layer: both
+    title: AI risk and impact assessment
+    objective: Identify and evaluate material risks before use and when conditions change.
+    requirement: >-
+      Each AI system shall undergo a documented, context-appropriate assessment addressing
+      intended and foreseeable use, affected parties, data, autonomy, external impact,
+      security, privacy, safety, fairness, legal, operational, third-party, and reputational risks.
+    applicability: Applies before approval, after material change, and when incidents or new information could alter the risk decision.
+    evidence_examples: [risk assessment, impact assessment, threat model, specialist reviews, approval rationale, residual-risk record]
+    implementation_notes: Use qualitative judgment where precision is unsupported and route domain-specific issues to qualified reviewers.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-GOV-005
+    domain: administrative_governance
+    layer: enterprise
+    title: Competence and role-based awareness
+    objective: Ensure people can fulfill AI governance, development, operation, and use responsibilities.
+    requirement: >-
+      The organization shall define required competencies and provide role-appropriate
+      education for decision makers, reviewers, developers, operators, owners, procurement
+      personnel, and users, including limitations, escalation, and responsible-use expectations.
+    applicability: Applies to roles that select, approve, build, configure, operate, monitor, review, or use AI.
+    evidence_examples: [competency matrix, training content, completion records, role guidance, exercise results]
+    implementation_notes: Measure practical understanding and refresh content following material changes or incidents.
+    references: [NIST-AI-RMF, ISO-IEC-42001]
+
+  - control_id: AI-GOV-006
+    domain: administrative_governance
+    layer: enterprise
+    title: Independent challenge and continual improvement
+    objective: Verify that AI governance remains suitable, implemented, and effective.
+    requirement: >-
+      The organization shall periodically review and independently challenge the design and
+      operation of its AI governance system, track findings to accountable owners, and update
+      controls in response to incidents, performance results, technology, obligations, and risk changes.
+    applicability: Applies to the enterprise governance system and should be scaled to portfolio size and risk.
+    evidence_examples: [assurance plan, review reports, findings register, remediation evidence, management review, change history]
+    implementation_notes: Independence may be organizational or procedural but reviewers must be able to challenge accountable owners.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-SEC-001
+    domain: technical_security
+    layer: ai_system
+    title: Secure architecture and threat modeling
+    objective: Identify trust boundaries, abuse paths, and failure modes before deployment.
+    requirement: >-
+      The AI system shall have documented architecture, data flows, trust boundaries,
+      dependencies, privileged operations, and threat scenarios, with security requirements
+      and mitigations incorporated into design and release decisions.
+    applicability: Applies to developed, integrated, configured, or externally exposed AI systems; depth increases with access, autonomy, and impact.
+    evidence_examples: [architecture diagram, data-flow diagram, threat model, abuse cases, security requirements, design review]
+    implementation_notes: Include prompts, retrieval, memory, tools, plugins, model endpoints, users, agents, and external content sources.
+    references: [NIST-AI-RMF, NIST-AI-600-1, OWASP-LLM, OWASP-AGENTIC]
+
+  - control_id: AI-SEC-002
+    domain: technical_security
+    layer: ai_system
+    title: Identity, authentication, and least privilege
+    objective: Restrict AI access to authorized subjects and necessary resources.
+    requirement: >-
+      The AI system shall authenticate users and non-human actors, enforce authorization at
+      each trust boundary, use least privilege and separation of duties, protect credentials,
+      and periodically review access and privilege assignments.
+    applicability: Applies when an AI system accesses non-public data, services, tools, environments, or administrative functions.
+    evidence_examples: [identity design, access matrix, role configuration, credential inventory, access reviews, privileged-access logs]
+    implementation_notes: Distinguish user, application, service, model, and agent identities; avoid shared or embedded long-lived credentials.
+    references: [OWASP-LLM, OWASP-AGENTIC, OWASP-AGENTIC-STATE, NIST-AI-RMF]
+
+  - control_id: AI-SEC-003
+    domain: technical_security
+    layer: ai_system
+    title: Untrusted input and prompt-injection defenses
+    objective: Prevent untrusted content from overriding instructions or causing unauthorized behavior.
+    requirement: >-
+      The AI system shall treat user, retrieved, uploaded, and externally sourced content as
+      untrusted; separate instructions from data; validate inputs and context; constrain
+      downstream actions; and test direct, indirect, encoded, and multi-step manipulation paths.
+    applicability: Applies to generative AI receiving user input, retrieved content, files, messages, web content, tool output, or agent communications.
+    evidence_examples: [input controls, trust-boundary design, adversarial tests, attack simulations, blocked-event logs, remediation records]
+    implementation_notes: Detection alone is insufficient. Apply architectural isolation, least privilege, output validation, and action authorization.
+    references: [OWASP-LLM, OWASP-AGENTIC, NIST-AI-600-1]
+
+  - control_id: AI-SEC-004
+    domain: technical_security
+    layer: ai_system
+    title: Safe output handling
+    objective: Prevent generated content from becoming an unsafe instruction, command, or disclosure.
+    requirement: >-
+      AI-generated output shall be treated as untrusted before display, execution, storage,
+      transmission, or use by another component. The receiving context shall apply schema,
+      encoding, content, authorization, and business-rule validation appropriate to the action.
+    applicability: Applies when outputs reach users, code interpreters, browsers, databases, APIs, workflows, tools, or other AI systems.
+    evidence_examples: [output schemas, sanitization configuration, policy tests, approval rules, integration tests, blocked-action records]
+    implementation_notes: Validate at the enforcement point and avoid relying on a model to approve its own output.
+    references: [OWASP-LLM, OWASP-AGENTIC]
+
+  - control_id: AI-SEC-005
+    domain: technical_security
+    layer: ai_system
+    title: Secure development, testing, and vulnerability management
+    objective: Reduce exploitable defects and unsafe changes across the AI system lifecycle.
+    requirement: >-
+      AI systems shall follow a secure development and change process that includes code and
+      configuration review, dependency analysis, secrets protection, security testing,
+      vulnerability remediation, environment separation, and release approval.
+    applicability: Applies to internally developed code and configurations and to material integration or customization of third-party AI.
+    evidence_examples: [development standard, review records, scan results, penetration tests, remediation tickets, release approvals]
+    implementation_notes: Include prompts, orchestration, retrieval pipelines, model configuration, infrastructure, and policy-as-code artifacts.
+    references: [OWASP-LLM, OWASP-AGENTIC, NIST-AI-RMF]
+
+  - control_id: AI-SEC-006
+    domain: technical_security
+    layer: ai_system
+    title: Resource and service abuse protection
+    objective: Limit denial of service, runaway consumption, and financially harmful use.
+    requirement: >-
+      The AI system shall enforce resource, rate, concurrency, recursion, token, time, and
+      financial limits appropriate to its operating context and shall fail safely when limits
+      or dependency thresholds are reached.
+    applicability: Applies to production, externally accessible, usage-priced, agentic, recursive, or computationally intensive AI systems.
+    evidence_examples: [quotas, rate-limit configuration, cost alerts, load tests, timeout settings, safe-failure tests]
+    implementation_notes: Apply limits per user, identity, agent, tool, tenant, and workflow where aggregate limits could mask abuse.
+    references: [OWASP-LLM, OWASP-AGENTIC, NIST-AI-600-1]
+
+  - control_id: AI-DAT-001
+    domain: data_privacy
+    layer: both
+    title: Authorized data use and minimization
+    objective: Limit AI processing to necessary, lawful, and approved information.
+    requirement: >-
+      Data used to develop, configure, test, retrieve for, operate, monitor, or improve an AI
+      system shall have a documented authorized purpose and shall be limited to the minimum
+      categories, fields, volume, precision, and retention needed for that purpose.
+    applicability: Applies whenever an AI system processes or generates data, including prompts, outputs, embeddings, logs, feedback, and memory.
+    evidence_examples: [data inventory, purpose record, minimization review, approved fields, data-flow map, retention configuration]
+    implementation_notes: Reassess secondary use, model improvement, telemetry, and provider use separately from the primary business purpose.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-DAT-002
+    domain: data_privacy
+    layer: ai_system
+    title: Data classification and protection
+    objective: Apply protection proportionate to data sensitivity throughout AI processing.
+    requirement: >-
+      The AI system shall classify information and enforce approved access, encryption,
+      transmission, storage, isolation, masking, loss-prevention, and disposal safeguards
+      across prompts, outputs, retrieval stores, training data, logs, caches, and memory.
+    applicability: Applies to non-public, personal, regulated, confidential, security-sensitive, or contractually restricted information.
+    evidence_examples: [classification record, encryption settings, key design, access policies, DLP tests, deletion verification]
+    implementation_notes: Include derived data and embeddings where they can reveal or reconstruct sensitive source information.
+    references: [NIST-AI-RMF, NIST-AI-600-1, OWASP-LLM, ISO-IEC-42001]
+
+  - control_id: AI-DAT-003
+    domain: data_privacy
+    layer: ai_system
+    title: Data provenance, quality, and permitted sourcing
+    objective: Support reliable, traceable, and authorized use of data and knowledge sources.
+    requirement: >-
+      Material data and knowledge sources shall be documented with origin, ownership or
+      license basis, transformations, quality limitations, update method, and permitted uses,
+      and shall be evaluated for representativeness, integrity, poisoning, and contamination risks.
+    applicability: Applies to training, fine-tuning, evaluation, retrieval, grounding, feedback, and decision-support data.
+    evidence_examples: [data cards, lineage records, licenses, source approvals, quality tests, poisoning tests, dataset version history]
+    implementation_notes: Record known gaps and avoid implying that provenance alone establishes accuracy, fairness, or legal permissibility.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, OWASP-LLM]
+
+  - control_id: AI-DAT-004
+    domain: data_privacy
+    layer: both
+    title: Privacy assessment and individual protections
+    objective: Identify and manage privacy effects on individuals throughout the AI lifecycle.
+    requirement: >-
+      AI processing involving personal data shall undergo appropriate privacy review and
+      implement required notice, choice, rights handling, access restrictions, minimization,
+      retention, correction, deletion, and protections against inappropriate inference or re-identification.
+    applicability: Applies when personal data is used or when outputs can identify, profile, infer about, or materially affect individuals.
+    evidence_examples: [privacy impact assessment, notices, consent or legal-basis record, rights procedures, deletion tests, re-identification assessment]
+    implementation_notes: Include inferred attributes, model memory, embeddings, monitoring data, and provider-retained interactions.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-LCM-001
+    domain: lifecycle
+    layer: ai_system
+    title: Intended use, limitations, and success criteria
+    objective: Establish clear boundaries against which the AI system can be evaluated and governed.
+    requirement: >-
+      Each AI system shall document its intended purpose, users, affected parties, operating
+      context, permitted and prohibited uses, dependencies, assumptions, known limitations,
+      human responsibilities, and measurable acceptance and failure criteria.
+    applicability: Applies from concept or procurement and must remain current through retirement.
+    evidence_examples: [system card, use-case record, requirements, limitation statement, acceptance criteria, owner approval]
+    implementation_notes: Avoid broad purpose statements that permit uncontrolled expansion; identify foreseeable misuse and out-of-scope contexts.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-LCM-002
+    domain: lifecycle
+    layer: ai_system
+    title: Evaluation, validation, and release readiness
+    objective: Demonstrate that the AI system performs acceptably and fails within understood boundaries.
+    requirement: >-
+      Before release, the AI system shall be evaluated using representative and adversarial
+      scenarios against approved criteria for task performance, security, privacy, safety,
+      reliability, harmful content, bias or impact, human oversight, and recovery as relevant.
+    applicability: Applies before initial production use and material releases; test depth follows context and potential impact.
+    evidence_examples: [evaluation plan, versioned datasets, test results, red-team report, limitations, release decision, unresolved issue log]
+    implementation_notes: Separate model benchmarks from end-to-end system validation and document test representativeness and uncertainty.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, OWASP-LLM, OWASP-AGENTIC]
+
+  - control_id: AI-LCM-003
+    domain: lifecycle
+    layer: both
+    title: Material change and reassessment
+    objective: Prevent changes from bypassing established risk decisions and controls.
+    requirement: >-
+      The organization shall define material-change criteria and reassess affected AI systems
+      before or promptly after changes to purpose, model, data, prompts, retrieval, tools,
+      permissions, autonomy, users, reach, vendor terms, environment, or applicable obligations.
+    applicability: Applies to planned changes, provider-driven changes, emergency changes, and discovered drift in system behavior or context.
+    evidence_examples: [change criteria, change tickets, impact analysis, regression tests, reassessment, approval history, rollback decision]
+    implementation_notes: New tool access, write authority, persistent memory, or external reach should be treated as material by default.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894, OWASP-AGENTIC]
+
+  - control_id: AI-LCM-004
+    domain: lifecycle
+    layer: ai_system
+    title: Suspension and retirement
+    objective: End AI use safely and remove residual access, data, and dependency exposure.
+    requirement: >-
+      Each production AI system shall have criteria and procedures for suspension and
+      retirement, including user and stakeholder communication, access revocation, data and
+      credential disposition, dependency handling, record preservation, and verification of completion.
+    applicability: Applies to production, externally used, vendor-dependent, or data-bearing AI systems.
+    evidence_examples: [retirement plan, shutdown checklist, revoked identities, deletion confirmation, archive record, stakeholder notice]
+    implementation_notes: Address downstream consumers, cached outputs, embedded models, integrations, contract termination, and legal holds.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-AGT-001
+    domain: agentic_ai
+    layer: ai_system
+    title: Agent identity and delegated authority
+    objective: Make each agent accountable and restrict its authority to an approved purpose.
+    requirement: >-
+      Each agent shall use an attributable non-human identity and operate under explicitly
+      delegated authority that defines allowed objectives, data, tools, actions, environments,
+      duration, and escalation conditions, with privileges no broader than the initiating user and approved service role require.
+    applicability: Applies when AI can plan, invoke tools, access services, communicate with agents, or execute actions beyond content generation.
+    evidence_examples: [agent registry, identity records, delegation policy, access matrix, scoped tokens, privilege reviews]
+    implementation_notes: Preserve the chain from human or service principal to agent and downstream action; prohibit privilege laundering.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE, NIST-AI-600-1]
+
+  - control_id: AI-AGT-002
+    domain: agentic_ai
+    layer: ai_system
+    title: Tool, connector, and action boundaries
+    objective: Prevent agents from using capabilities or parameters outside approved scope.
+    requirement: >-
+      Agent tools, connectors, APIs, destinations, operations, and parameters shall be
+      allowlisted and enforced outside the model, with least privilege, schema validation,
+      transaction and rate limits, environment separation, and denial by default.
+    applicability: Applies to every agent with tool, connector, plugin, code-execution, messaging, workflow, or system access.
+    evidence_examples: [tool registry, allowlist configuration, API scopes, policy tests, denied-action logs, transaction limits]
+    implementation_notes: Expose narrow task-specific functions instead of general shells, broad APIs, or unrestricted browsers where practical.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE, OWASP-LLM]
+
+  - control_id: AI-AGT-003
+    domain: agentic_ai
+    layer: ai_system
+    title: Human approval and irreversible-action safeguards
+    objective: Preserve meaningful human control over consequential or difficult-to-reverse actions.
+    requirement: >-
+      Agents shall require authenticated, informed human approval before defined high-impact,
+      externally binding, privileged, destructive, financial, safety-relevant, or difficult-to-reverse
+      actions, and the approval interface shall present the proposed action, basis, scope, and consequences.
+    applicability: Applies when agents can modify records, send communications, execute code, make commitments, move value, affect rights, or change production systems.
+    evidence_examples: [approval policy, workflow configuration, interface tests, approval logs, separation-of-duties review, bypass tests]
+    implementation_notes: Avoid approval fatigue, bundled approvals, self-approval, and prompts that conceal the actual tool parameters or destination.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE, NIST-AI-RMF]
+
+  - control_id: AI-AGT-004
+    domain: agentic_ai
+    layer: ai_system
+    title: Agent memory and state protection
+    objective: Prevent unauthorized disclosure, poisoning, persistence, or cross-context influence through agent memory.
+    requirement: >-
+      Persistent and working memory shall be authorized, scoped, isolated, integrity-protected,
+      access-controlled, monitored, and subject to correction, retention, and deletion controls;
+      untrusted content shall not become durable instruction or trusted state without validation.
+    applicability: Applies to agents that retain conversation, task, user, organizational, vector, episodic, or cross-session state.
+    evidence_examples: [memory architecture, isolation tests, access rules, poisoning tests, retention settings, correction and deletion tests]
+    implementation_notes: Separate instructions, observations, user data, and learned preferences and prevent cross-user or cross-tenant leakage.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE, NIST-AI-600-1]
+
+  - control_id: AI-AGT-005
+    domain: agentic_ai
+    layer: ai_system
+    title: Multi-agent and delegation controls
+    objective: Bound authority propagation and cascading behavior across interacting agents.
+    requirement: >-
+      Multi-agent systems shall authenticate participants, validate messages, restrict which
+      agents may delegate or receive tasks, prevent authority expansion, limit recursion and
+      propagation, and preserve traceability across task handoffs and resulting actions.
+    applicability: Applies when agents communicate, delegate, coordinate, negotiate, or invoke other autonomous or semi-autonomous agents.
+    evidence_examples: [agent topology, trust policy, delegation rules, message validation, recursion limits, end-to-end traces, failure tests]
+    implementation_notes: Treat agent output as untrusted input and design for compromised, unavailable, misaligned, or looping participants.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE]
+
+  - control_id: AI-AGT-006
+    domain: agentic_ai
+    layer: ai_system
+    title: Agent containment and emergency stop
+    objective: Limit harmful activity and restore control when agent behavior deviates from approved boundaries.
+    requirement: >-
+      Agentic systems shall provide independently enforceable containment, credential
+      revocation, action interruption, quarantine, rollback, and emergency-disable mechanisms
+      that operators can invoke without relying on the affected model or agent.
+    applicability: Applies to agents with production access, material reach, autonomous action, privileged tools, or difficult-to-reverse effects.
+    evidence_examples: [containment design, kill-switch tests, credential revocation test, rollback exercise, operator runbook, recovery results]
+    implementation_notes: Test whether in-flight tasks, delegated agents, queued actions, and cached credentials actually stop.
+    references: [OWASP-AGENTIC, OWASP-AGENTIC-STATE, NIST-AI-600-1]
+
+  - control_id: AI-OPS-001
+    domain: monitoring_operations
+    layer: ai_system
+    title: Logging and traceability
+    objective: Reconstruct material AI decisions, interactions, and actions without excessive collection.
+    requirement: >-
+      The AI system shall generate protected, time-synchronized records sufficient to trace
+      material inputs, outputs, identities, model and configuration versions, retrieval sources,
+      tool calls, approvals, actions, policy decisions, and errors, subject to minimization and retention controls.
+    applicability: Applies to production systems; scope increases for consequential, external, privileged, or agentic use.
+    evidence_examples: [logging design, sample traces, integrity controls, retention settings, access reviews, reconstruction exercise]
+    implementation_notes: Do not indiscriminately log sensitive prompts or outputs; use structured metadata, redaction, and tiered access where appropriate.
+    references: [NIST-AI-RMF, NIST-AI-600-1, OWASP-AGENTIC-STATE, OWASP-LLM]
+
+  - control_id: AI-OPS-002
+    domain: monitoring_operations
+    layer: ai_system
+    title: Behavioral and control monitoring
+    objective: Detect drift, misuse, failures, and operation outside approved boundaries.
+    requirement: >-
+      Production AI systems shall be monitored using defined indicators, thresholds, and
+      review responsibilities for performance, harmful or anomalous behavior, access, tool use,
+      policy violations, data exposure, control failure, dependency health, and changing risk conditions.
+    applicability: Applies to production systems; near-real-time monitoring is expected where delayed detection could materially increase harm.
+    evidence_examples: [monitoring plan, dashboards, alert rules, alert samples, review records, threshold calibration, remediation tickets]
+    implementation_notes: Combine model, application, user, agent, infrastructure, and business-process signals rather than relying on one metric.
+    references: [NIST-AI-RMF, NIST-AI-600-1, OWASP-AGENTIC-STATE, ISO-IEC-42001]
+
+  - control_id: AI-OPS-003
+    domain: monitoring_operations
+    layer: both
+    title: AI incident response and reporting
+    objective: Contain, investigate, communicate, and learn from AI-related incidents.
+    requirement: >-
+      The organization shall integrate AI failure and misuse scenarios into incident
+      management, with defined reporting channels, severity criteria, roles, evidence
+      preservation, containment, stakeholder notification, recovery, root-cause analysis, and control improvement.
+    applicability: Applies to the enterprise and all operational AI systems, including relevant vendor incidents and near misses.
+    evidence_examples: [incident plan, AI scenarios, exercise results, incident records, notification decisions, post-incident review, corrective actions]
+    implementation_notes: Cover harmful output, data disclosure, prompt or memory compromise, unauthorized action, model failure, abuse, and provider outage.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, OWASP-AGENTIC-STATE]
+
+  - control_id: AI-OPS-004
+    domain: monitoring_operations
+    layer: ai_system
+    title: Resilience, safe failure, and recovery
+    objective: Maintain acceptable outcomes when models, data, tools, providers, or controls fail.
+    requirement: >-
+      The AI system shall define and test safe-failure behavior, dependency timeouts,
+      fallback or manual procedures, backup and restoration where relevant, rollback,
+      reconciliation, recovery objectives, and criteria for degraded operation or suspension.
+    applicability: Applies when AI supports material operations, external services, automated action, or processes with availability or integrity requirements.
+    evidence_examples: [resilience design, dependency map, recovery plan, failover test, rollback test, reconciliation results, exercise report]
+    implementation_notes: A fallback model may share the same failure mode; validate independence and the safety of non-AI alternatives.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894, OWASP-AGENTIC]
+
+  - control_id: AI-VSC-001
+    domain: vendor_supply_chain
+    layer: both
+    title: AI supplier and service due diligence
+    objective: Understand and manage risk introduced by external AI providers and services.
+    requirement: >-
+      Before use and periodically thereafter, the organization shall evaluate relevant AI
+      suppliers for security, privacy, resilience, governance, data use, model practices,
+      isolation, incident response, subprocessors, legal terms, assurance, financial viability, and service dependency.
+    applicability: Applies to hosted models, AI applications, platforms, embedded AI features, data services, agents, plugins, and material support providers.
+    evidence_examples: [due-diligence assessment, assurance reports, architecture responses, privacy review, resilience evidence, approval record]
+    implementation_notes: Tailor depth to dependency and impact and record unanswered questions, compensating controls, and acceptance authority.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894, OWASP-LLM]
+
+  - control_id: AI-VSC-002
+    domain: vendor_supply_chain
+    layer: both
+    title: Contractual AI safeguards
+    objective: Make material supplier responsibilities enforceable and transparent.
+    requirement: >-
+      Agreements for material AI services shall address permitted data use, model training or
+      improvement, confidentiality, security, privacy, retention and deletion, isolation,
+      subprocessors, incident notification, service changes, assurance rights, continuity,
+      intellectual property, termination assistance, and allocation of responsibilities.
+    applicability: Applies where third-party AI processes organizational data, supports material operations, or creates meaningful legal, security, privacy, or dependency exposure.
+    evidence_examples: [contract clauses, data-processing terms, service levels, subprocessor terms, deletion commitments, negotiation exceptions]
+    implementation_notes: Verify that product configuration and actual service behavior match negotiated terms; click-through terms may change independently.
+    references: [NIST-AI-RMF, NIST-AI-600-1, ISO-IEC-42001, ISO-IEC-23894]
+
+  - control_id: AI-VSC-003
+    domain: vendor_supply_chain
+    layer: ai_system
+    title: Component provenance and integrity
+    objective: Reduce compromise, tampering, and unknown risk in AI components and dependencies.
+    requirement: >-
+      Models, datasets, libraries, containers, plugins, extensions, prompts, and other material
+      components shall come from approved sources, have documented versions and provenance,
+      be integrity-checked where feasible, and undergo security, license, and risk review before use or update.
+    applicability: Applies to externally sourced, open-source, pretrained, downloaded, imported, or dynamically loaded components.
+    evidence_examples: [component inventory, model and data provenance, checksums or signatures, scan results, licenses, approval records, update history]
+    implementation_notes: Maintain an AI bill of materials appropriate to the system and address mutable tags, remote code, unsafe serialization, and abandoned packages.
+    references: [OWASP-LLM, OWASP-AGENTIC, NIST-AI-600-1]
+
+  - control_id: AI-VSC-004
+    domain: vendor_supply_chain
+    layer: both
+    title: Supplier change and subprocessor oversight
+    objective: Prevent unreviewed supplier changes from altering approved risk conditions.
+    requirement: >-
+      Material supplier and subprocessor changes shall be identified, assessed, and governed,
+      including changes to models, training or data use, hosting location, security controls,
+      features, terms, subprocessors, service levels, ownership, and end-of-life status.
+    applicability: Applies to material third-party AI services and components throughout the relationship.
+    evidence_examples: [change notices, subprocessor register, reassessments, version tests, contract review, approval or exit decision]
+    implementation_notes: Define notification expectations and technical detection where providers do not offer reliable version or change transparency.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894, OWASP-LLM]
+
+  - control_id: AI-VSC-005
+    domain: vendor_supply_chain
+    layer: both
+    title: Concentration, continuity, and exit planning
+    objective: Limit operational and strategic harm from supplier failure, lock-in, or withdrawal.
+    requirement: >-
+      Material AI dependencies shall be assessed for concentration, portability, service
+      failure, provider discontinuation, acquisition, and lock-in risk, with tested continuity,
+      migration, data return or deletion, and orderly exit arrangements where warranted.
+    applicability: Applies where loss or material change of a provider, model, platform, or data source could disrupt important operations or control effectiveness.
+    evidence_examples: [dependency analysis, exit plan, portability test, backup procedure, recovery exercise, deletion or return evidence]
+    implementation_notes: Consider proprietary prompts, evaluation assets, embeddings, fine-tunes, logs, integrations, and skills required to migrate.
+    references: [NIST-AI-RMF, ISO-IEC-42001, ISO-IEC-23894]
