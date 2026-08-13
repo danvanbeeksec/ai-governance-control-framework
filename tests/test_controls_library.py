@@ -7,6 +7,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTROL_FILE = ROOT / "data" / "controls.yaml"
+MAPPING_FILE = ROOT / "data" / "mappings.yaml"
 
 REQUIRED_FIELDS = {
     "control_id",
@@ -29,6 +30,11 @@ EXPECTED_DOMAINS = {
     "agentic_ai",
     "monitoring_operations",
     "vendor_supply_chain",
+    "usage_workforce",
+    "inventory_lifecycle",
+    "risk_impact_compliance",
+    "systems_models_platforms",
+    "human_oversight_transparency",
 }
 
 
@@ -42,7 +48,7 @@ def test_control_library_schema_and_unique_ids():
     controls = library["controls"]
     reference_keys = set(library["reference_catalog"])
 
-    assert library["schema_version"] == "1.0"
+    assert library["schema_version"] == "2.0"
     assert controls
     assert len({control["control_id"] for control in controls}) == len(controls)
 
@@ -71,14 +77,60 @@ def test_both_control_layers_are_represented():
 
 
 def test_library_contains_no_company_specific_reference():
-    text = CONTROL_FILE.read_text(encoding="utf-8").lower()
+    text = "\n".join(
+        path.read_text(encoding="utf-8").lower()
+        for path in (CONTROL_FILE, MAPPING_FILE)
+    )
     prohibited_terms = ("marketaxess", "market axess")
     assert not any(term in text for term in prohibited_terms)
+
+
+def test_mapping_library_is_optional_high_confidence_and_referentially_valid():
+    controls = {control["control_id"] for control in load_library()["controls"]}
+    with MAPPING_FILE.open(encoding="utf-8") as stream:
+        mapping_library = yaml.safe_load(stream)
+
+    assert mapping_library["schema_version"] == "1.0"
+    mappings = mapping_library["mappings"]
+    assert len(mappings) < len(controls)
+    required = {
+        "control_id", "framework", "edition", "reference", "category",
+        "basis", "confidence", "rationale",
+    }
+    for mapping in mappings:
+        assert required <= set(mapping)
+        assert mapping["control_id"] in controls
+        assert mapping["framework"] in {
+            "ISO-IEC-27001", "ISO-IEC-42001", "EU-AI-ACT", "DORA", "SOC-2"
+        }
+        assert mapping["category"] in {"requirement", "guideline"}
+        assert mapping["basis"] in {"source_supported", "inferred"}
+        assert mapping["confidence"] == "high"
+        assert mapping["reference"].strip()
+        assert mapping["rationale"].strip()
+
+
+def test_mappings_are_unique():
+    with MAPPING_FILE.open(encoding="utf-8") as stream:
+        mappings = yaml.safe_load(stream)["mappings"]
+    keys = {
+        (m["control_id"], m["framework"], m["edition"], m["reference"])
+        for m in mappings
+    }
+    assert len(keys) == len(mappings)
 
 
 def test_human_readable_catalog_is_current():
     result = subprocess.run(
         [sys.executable, ROOT / "scripts" / "render_control_catalog.py", "--check"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr or result.stdout
+
+    result = subprocess.run(
+        [sys.executable, ROOT / "scripts" / "render_mapping_catalog.py", "--check"],
         cwd=ROOT,
         capture_output=True,
         text=True,

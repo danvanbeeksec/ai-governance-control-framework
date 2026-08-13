@@ -7,13 +7,14 @@ This repository is the authoritative source for the framework and control librar
 ## What is included
 
 - [Control Framework](docs/control-framework.md): architecture, applicability, evidence, and lifecycle
-- [Control Domains](docs/control-domains.md): scope and boundaries of the seven domains
+- [Control Domains](docs/control-domains.md): scope and boundaries of the enterprise control domains
 - [Implementation Guide](docs/implementation-guide.md): adoption and tailoring approach
 - [Evidence Guide](docs/evidence-guide.md): evidence design and evaluation
 - [Control Catalog](docs/control-catalog.md): generated human-readable view of all controls
 - [Public References](docs/references.md): source citations and use limitations
-- [`data/controls.yaml`](data/controls.yaml): authoritative 35-control library
-- [Reference mappings](mappings/control-reference-mapping.md): conceptual public-source alignment
+- [`data/controls.yaml`](data/controls.yaml): authoritative 70-control library
+- [`data/mappings.yaml`](data/mappings.yaml): optional, high-confidence requirement and guideline mappings
+- [Reference mappings](mappings/control-reference-mapping.md): human-readable mapping methodology and catalog
 - [Synthetic assessment example](examples/sample-control-assessment.yaml): non-production usage example
 
 ## Installable distribution
@@ -28,9 +29,10 @@ python -m pip install "ai-governance-control-framework @ git+https://github.com/
 Consumers can read the packaged artifact without modifying it:
 
 ```python
-from ai_governance_control_framework import controls_bytes
+from ai_governance_control_framework import controls_bytes, mappings_bytes
 
 artifact = controls_bytes()
+optional_mappings = mappings_bytes()
 ```
 
 The build includes the bytes from `data/controls.yaml`. Tests verify that the packaged resource
@@ -39,7 +41,7 @@ a second control authority or an API for changing controls.
 
 ## Repository boundaries
 
-The framework does not contain risk-tier logic, a control-selection engine, organization-specific approval authorities, legal conclusions, or employer-derived material. Mappings indicate conceptual relevance only. They do not establish compliance, conformity, certification, equivalence, or complete coverage.
+The framework does not contain risk-tier logic, a control-selection engine, organization-specific approval authorities, legal conclusions, or employer-derived material. A control does not need an external mapping to be valid. Published mappings are limited to high-confidence relationships and do not establish compliance, conformity, certification, equivalence, or complete coverage.
 
 No employer or client control catalog, policy, assessment, evidence, workflow, architecture, identifier, threshold, or non-public data may be added to this repository. Examples must use fictional organizations, systems, and outcomes.
 
@@ -55,10 +57,11 @@ changing `data/controls.yaml`, regenerate it with:
 
 ```bash
 python scripts/render_control_catalog.py
+python scripts/render_mapping_catalog.py
 ```
 
 ## Status
 
-**Initial framework milestone: ready for review.** The framework and 35-control baseline are complete enough for design review. Organization-specific tailoring, formal approval, and operational implementation remain outside this repository.
+**Version 1.0 release candidate: ready for review.** The 70-control enterprise library and initial high-confidence mapping layer are complete enough for design and standards review. Organization-specific tailoring, formal approval, mapping validation, and operational implementation remain outside this repository.
 
 Licensed under the MIT License. See [LICENSE](LICENSE).

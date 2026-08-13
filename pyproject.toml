@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ai-governance-control-framework"
-version = "0.1.0"
+version = "1.0.0rc1"
 description = "Installable distribution of the Independent AI Control Library"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,3 +24,5 @@ packages = ["src/ai_governance_control_framework"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "data/controls.yaml" = "ai_governance_control_framework/resources/controls.yaml"
+"data/mappings.yaml" = "ai_governance_control_framework/resources/mappings.yaml"
+"data/applicability-taxonomy.yaml" = "ai_governance_control_framework/resources/applicability-taxonomy.yaml"

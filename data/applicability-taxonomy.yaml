@@ -1,0 +1,33 @@
+schema_version: "1.0"
+object_types:
+  - enterprise_ai_governance
+  - general_ai_usage
+  - ai_system
+  - ai_application
+  - ai_model
+  - ai_platform
+  - ai_agent
+  - retrieval_system
+  - vendor_ai
+  - ai_data
+triggers:
+  - non_public_data
+  - personal_data
+  - regulated_activity
+  - consequential_decision
+  - external_interaction
+  - generated_content
+  - untrusted_input
+  - retrieval_or_grounding
+  - tool_or_connector_access
+  - write_or_transaction_access
+  - persistent_memory
+  - multi_agent_delegation
+  - shared_or_multi_tenant_platform
+  - third_party_dependency
+  - material_change
+  - production_operation
+decision_states: [applicable, not_applicable, planned, implemented, verified, exception]
+note: >-
+  This taxonomy supports future structured applicability migration. The v1.0 control
+  records retain readable applicability statements for backward compatibility.

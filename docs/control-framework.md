@@ -13,7 +13,7 @@ The framework translates broad governance and risk outcomes into testable requir
 3. **Risk-responsive application.** Applicability follows system characteristics, context, and obligations. The library does not assign risk tiers.
 4. **Evidence over assertion.** Implementation claims require evidence of design and, where relevant, operation.
 5. **Lifecycle coverage.** Controls apply from concept and procurement through operation, change, and retirement.
-6. **Technology neutrality.** Requirements cover internally developed, embedded, hosted, generative, predictive, and agentic AI.
+6. **Context specificity.** Controls may target general AI use, systems, models, platforms, agents, data, or vendors when generic wording would weaken the requirement.
 7. **Independent authorship.** Control language is original, company-agnostic, and informed by public guidance without reproducing standards text.
 
 ## Scope and boundaries
@@ -27,6 +27,11 @@ It does not contain:
 - jurisdiction-specific legal conclusions;
 - a complete control test plan or evidence-retention schedule;
 - claims of conformity with NIST, ISO/IEC, or OWASP material.
+
+Controls do not require an external-framework mapping. An organization may adopt a
+control for internal policy, risk appetite, architecture, operational, contractual, or
+good-practice reasons. Mappings are published separately only where the relationship is
+supported with high confidence.
 
 ## Control architecture
 
@@ -57,6 +62,11 @@ Some controls are implemented centrally and inherited by many AI systems, such a
 | Agentic AI | Agent identity, delegated authority, tool boundaries, memory, approvals, containment | AI system |
 | Monitoring and operations | Logging, behavioral monitoring, performance, incident response, recovery | Both |
 | Vendor and supply chain | Due diligence, contract safeguards, component provenance, changes, dependency and exit | Both |
+| AI usage and workforce | Approved tools, literacy, data-use boundaries, and output verification | Enterprise and user activity |
+| Inventory and lifecycle governance | Discovery, resource documentation, registration, ownership, and lifecycle status | Both |
+| Risk, impact, and compliance | Legal classification, impact assessment, treatment, and acceptance | Both |
+| Systems, models, and platforms | Model selection, versions, platform isolation, administration, endpoints, and evaluation | AI system |
+| Human oversight and transparency | Effective oversight, decision accountability, contestability, disclosure, and user information | Both |
 
 ## Control record model
 
@@ -73,7 +83,12 @@ Each entry in `data/controls.yaml` contains:
 | `applicability` | Conditions that make the control relevant. It is not a risk-tier rule. |
 | `evidence_examples` | Illustrative evidence, not an exhaustive test procedure. |
 | `implementation_notes` | Technology-neutral design considerations and common boundaries. |
-| `references` | Public-source identifiers showing conceptual relevance. |
+| `references` | Public-source identifiers showing conceptual relevance. These are not compliance mappings. |
+
+High-confidence framework mappings are maintained in `data/mappings.yaml`. Each mapping
+records the framework edition and provision, `requirement` or `guideline` category,
+`source_supported` or `inferred` basis, rationale, and any applicability condition. Missing
+mappings are intentional and must not be replaced with weak or speculative crosswalks.
 
 The library separates a control objective from its implementation. An organization may create procedures, technical standards, tests, and evidence specifications beneath a control without changing the stable control ID.
 
