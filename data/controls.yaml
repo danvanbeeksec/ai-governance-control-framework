@@ -1,8 +1,8 @@
 schema_version: "2.0"
 library:
   name: Independent AI Control Library
-  version: "1.0.0-rc.1"
-  status: ready_for_review
+  version: "1.0.0"
+  status: published
   description: >-
     An independently authored enterprise AI control library covering organizational AI
     governance, workforce use, AI systems, models, platforms, agents, data, operations,

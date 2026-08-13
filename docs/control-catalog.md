@@ -4,9 +4,9 @@
 This is the human-readable view of the authoritative [`data/controls.yaml`](../data/controls.yaml) control library. Changes must be made in the YAML source and regenerated with `python scripts/render_control_catalog.py`.
 
 - **Library:** Independent AI Control Library
-- **Library version:** `1.0.0-rc.1`
+- **Library version:** `1.0.0`
 - **Schema version:** `2.0`
-- **Status:** `ready_for_review`
+- **Status:** `published`
 - **Controls:** 70
 
 ## Contents

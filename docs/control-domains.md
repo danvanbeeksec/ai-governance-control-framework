@@ -1,6 +1,6 @@
 # Control Domains
 
-The v1.0 release candidate contains 70 controls across twelve deliberately specific domains.
+Version 1.0 contains 70 controls across twelve deliberately specific domains.
 The additional domains keep general workforce use, inventory, impact, models and platforms,
 and human oversight visible instead of forcing those requirements into generic system controls.
 

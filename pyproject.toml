@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ai-governance-control-framework"
-version = "1.0.0rc1"
+version = "1.0.0"
 description = "Installable distribution of the Independent AI Control Library"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Dan Van Beek" }]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
 ]
