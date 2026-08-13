@@ -12,6 +12,7 @@ This repository is the authoritative source for the framework and control librar
 - [Evidence Guide](docs/evidence-guide.md): evidence design and evaluation
 - [Control Catalog](docs/control-catalog.md): generated human-readable view of all controls
 - [Public References](docs/references.md): source citations and use limitations
+- [Changelog](CHANGELOG.md): version history and compatibility notes
 - [`data/controls.yaml`](data/controls.yaml): authoritative 70-control library
 - [`data/mappings.yaml`](data/mappings.yaml): optional, high-confidence requirement and guideline mappings
 - [Reference mappings](mappings/control-reference-mapping.md): human-readable mapping methodology and catalog
@@ -62,6 +63,6 @@ python scripts/render_mapping_catalog.py
 
 ## Status
 
-**Version 1.0 release candidate: ready for review.** The 70-control enterprise library and initial high-confidence mapping layer are complete enough for design and standards review. Organization-specific tailoring, formal approval, mapping validation, and operational implementation remain outside this repository.
+**Version 1.0 is published.** The baseline contains 70 enterprise AI controls across 12 domains and 42 optional, high-confidence mappings. Organization-specific tailoring, legal and standards interpretation, formal organizational approval, and operational implementation remain the responsibility of each adopter.
 
 Licensed under the MIT License. See [LICENSE](LICENSE).
