@@ -18,7 +18,7 @@ def test_package_exposes_exact_authoritative_artifact():
     assert hashlib.sha256(controls_bytes()).hexdigest() == (
         "c0cef3a0046aa74b1705382d56a8d4659f86d119e7635dfefe8804d6e51d0fe2"
     )
-    assert __version__ == "1.0.0"
+    assert __version__ == "1.1.0"
 
     assert mappings_bytes() == (ROOT / "data" / "mappings.yaml").read_bytes()
     assert applicability_taxonomy_bytes() == (
