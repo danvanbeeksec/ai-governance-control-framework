@@ -16,7 +16,7 @@ def test_package_exposes_exact_authoritative_artifact():
 
     assert controls_bytes() == authoritative
     assert hashlib.sha256(controls_bytes()).hexdigest() == (
-        "8719eb521b8b12758d905e1dc51087f0f65ba9b74468b5e6cd3c79ea22f1acb9"
+        "c0cef3a0046aa74b1705382d56a8d4659f86d119e7635dfefe8804d6e51d0fe2"
     )
     assert __version__ == "1.0.0"
 

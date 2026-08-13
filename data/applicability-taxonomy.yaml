@@ -1,4 +1,4 @@
-schema_version: "1.0"
+schema_version: "1.1"
 object_types:
   - enterprise_ai_governance
   - general_ai_usage
@@ -28,6 +28,9 @@ triggers:
   - material_change
   - production_operation
 decision_states: [applicable, not_applicable, planned, implemented, verified, exception]
+applicability_modes: [universal, conditional, human_determination]
+condition_operators: [in, contains_any]
 note: >-
-  This taxonomy supports future structured applicability migration. The v1.0 control
-  records retain readable applicability statements for backward compatibility.
+  The v1.1 control records use this taxonomy for structured applicability metadata and
+  retain readable applicability statements for backward compatibility. Consumers evaluate
+  submitted facts; the framework does not make runtime decisions.
