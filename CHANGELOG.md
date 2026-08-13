@@ -1,11 +1,5 @@
 # Changelog
 
-## 1.1.0
-
-- Added additive, machine-readable applicability metadata to every control.
-- Defined supported AI contexts, applicability modes, factual trigger groups, required inputs, exclusions, and rationale.
-- Preserved the original human-readable `applicability` field for existing consumers.
-
 All notable changes to the AI Governance Control Framework are recorded here.
 
 ## 1.0.0 - 2026-08-13

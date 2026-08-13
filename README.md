@@ -1,9 +1,5 @@
 # AI Governance Control Framework
 
-Version 1.1 adds structured applicability metadata to every v1.0 control while retaining the original human-readable applicability statement. The framework declares when a control is relevant; consuming applications remain responsible for evaluating facts and producing decisions.
-
-See [Applicability metadata](docs/applicability-metadata.md) for the machine-readable contract and compatibility guidance.
-
 An independently authored, company-agnostic framework and machine-readable control library for governing enterprise AI capabilities and individual AI systems.
 
 This repository is the authoritative source for the framework and control library. Applications, including the [AI Governance Control Plane](https://github.com/danvanbeeksec/ai-governance-control-plane), may consume a versioned release but do not define or duplicate the controls.

@@ -17,7 +17,6 @@ REQUIRED_FIELDS = {
     "objective",
     "requirement",
     "applicability",
-    "applicability_metadata",
     "evidence_examples",
     "implementation_notes",
     "references",
@@ -49,7 +48,7 @@ def test_control_library_schema_and_unique_ids():
     controls = library["controls"]
     reference_keys = set(library["reference_catalog"])
 
-    assert library["schema_version"] == "2.1"
+    assert library["schema_version"] == "2.0"
     assert controls
     assert len({control["control_id"] for control in controls}) == len(controls)
 
@@ -61,19 +60,6 @@ def test_control_library_schema_and_unique_ids():
         assert control["objective"].strip()
         assert control["requirement"].strip()
         assert control["applicability"].strip()
-        metadata = control["applicability_metadata"]
-        assert metadata["contexts"]
-        assert metadata["mode"] in {"universal", "conditional", "human_determination"}
-        assert set(metadata) == {
-            "contexts", "mode", "trigger_conditions", "required_inputs", "exclusions", "rationale"
-        }
-        assert metadata["rationale"].strip()
-        trigger_fields = {
-            condition["field"]
-            for group in metadata["trigger_conditions"]
-            for condition in group["all"]
-        }
-        assert set(metadata["required_inputs"]) == trigger_fields
         assert control["evidence_examples"]
         assert control["implementation_notes"].strip()
         assert set(control["references"]) <= reference_keys
