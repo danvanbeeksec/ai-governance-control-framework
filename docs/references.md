@@ -22,6 +22,17 @@ These sources inform the framework's terminology, control themes, lifecycle fram
 
 ISO standards text is copyrighted and is not reproduced. Access to full standards may require purchase or authorized organizational access.
 
+## Regulation and assurance criteria
+
+- European Union. [Regulation (EU) 2024/1689, Artificial Intelligence Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj).
+- European Union. [Regulation (EU) 2022/2554, Digital Operational Resilience Act](https://eur-lex.europa.eu/eli/reg/2022/2554/oj).
+- AICPA. [2017 Trust Services Criteria, with revised points of focus 2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022).
+- ISO/IEC. [ISO/IEC 27001:2022, Information security management systems](https://www.iso.org/standard/27001).
+
+Regulatory mappings are conditional on jurisdiction, organizational role, system classification,
+and sector scope. SOC 2 mappings refer to Trust Services Criteria, not to a certification or
+assurance conclusion about this library.
+
 ## Citation maintenance
 
 Review links, editions, and superseding publications before a public release or material framework revision. Record source-driven changes in repository history. See the [Control Reference Mapping](../mappings/control-reference-mapping.md) for conceptual alignment.

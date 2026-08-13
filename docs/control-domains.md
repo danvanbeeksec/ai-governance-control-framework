@@ -1,8 +1,12 @@
 # Control Domains
 
+The v1.0 release candidate contains 70 controls across twelve deliberately specific domains.
+The additional domains keep general workforce use, inventory, impact, models and platforms,
+and human oversight visible instead of forcing those requirements into generic system controls.
+
 ## Purpose
 
-The library groups controls into seven domains. Domains support navigation and ownership discussions; they are not organizational silos. A single risk scenario may require controls from several domains.
+Domains support navigation and ownership discussions; they are not organizational silos. A single risk scenario may require controls from several domains.
 
 | Domain key | Domain | Scope |
 |---|---|---|
@@ -13,6 +17,11 @@ The library groups controls into seven domains. Domains support navigation and o
 | `agentic_ai` | Agentic AI | Agent identity, delegated authority, tools, approvals, memory, multi-agent operation, containment, and emergency stop |
 | `monitoring_operations` | Monitoring and operations | Traceability, behavioral monitoring, incident response, safe failure, resilience, and recovery |
 | `vendor_supply_chain` | Vendor and supply chain | Supplier diligence, contracts, component provenance, changes, subprocessors, concentration, continuity, and exit |
+| `usage_workforce` | AI usage and workforce | Approved tools, literacy, output verification, and information-use boundaries |
+| `inventory_lifecycle` | Inventory and lifecycle governance | Discovery, dependency documentation, registration, ownership, and lifecycle status |
+| `risk_impact_compliance` | Risk, impact, and compliance | Regulatory classification, impact assessment, treatment, and acceptance |
+| `systems_models_platforms` | Systems, models, and platforms | Model approval, versioning, evaluation, platform isolation, administration, and endpoints |
+| `human_oversight_transparency` | Human oversight and transparency | Oversight authority, decision accountability, contestability, disclosure, and user information |
 
 ## Enterprise and system layers
 

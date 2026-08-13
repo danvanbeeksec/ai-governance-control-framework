@@ -1,109 +1,74 @@
-# AI Control Reference Mapping
+<!-- Generated from data/mappings.yaml. Do not edit directly. -->
+# High-Confidence Framework Mappings
 
-## Purpose and interpretation
+## Interpretation
 
-This document maps the independently authored controls in `data/controls.yaml` to public AI governance and security references. It helps reviewers understand why a control domain is relevant and where to perform deeper research.
+A control does not need an external mapping to be valid. Organizations may adopt
+controls for internal policy, risk appetite, architecture, contractual, operational,
+or good-practice reasons. This catalog includes only mappings assessed as high
+confidence. It is not a complete crosswalk and does not establish compliance,
+conformity, certification, or legal applicability.
 
-Mappings are **conceptual and non-exhaustive**. They do not reproduce source requirements, represent a clause-by-clause crosswalk, demonstrate full coverage, establish equivalence, or support a claim of compliance, conformity, or certification. Readers should consult the authoritative publications and obtain qualified advice for their context. ISO/IEC standard text is not reproduced.
+- **Requirement:** the cited provision explicitly requires or directly addresses the control outcome.
+- **Guideline:** the cited provision supports the control as an implementation or maturity practice.
+- **Source-supported:** an identified source crosswalk or assessment supports the relationship.
+- **Inferred:** the relationship was independently reasoned from authoritative framework text.
 
-## Source keys
+Regulatory mappings apply only when the organization, system, jurisdiction, role, and
+classification are in scope. Consult authoritative sources and qualified advisers.
 
-| Key | Public reference | Mapping use |
-|---|---|---|
-| NIST-AI-RMF | NIST AI RMF 1.0 | Governance, context, measurement, management, accountability, and lifecycle outcomes |
-| NIST-AI-600-1 | NIST Generative AI Profile | Generative AI risks and suggested actions organized around AI RMF outcomes |
-| ISO-IEC-42001 | ISO/IEC 42001:2023 | AI management-system, governance, operation, evaluation, and improvement context |
-| ISO-IEC-23894 | ISO/IEC 23894:2023 | AI risk-management principles, integration, process, monitoring, and communication context |
-| OWASP-LLM | OWASP Top 10 for LLM Applications 2025 | LLM application threat categories and security design context |
-| OWASP-AGENTIC | OWASP Top 10 for Agentic Applications 2026 | Agent goals, tools, identity, code, memory, communications, cascades, trust, and rogue behavior |
-| OWASP-AGENTIC-STATE | OWASP State of Agentic AI Security and Governance | Agent taxonomy, runtime identity, permissions, observability, governance, and containment context |
+**Published mappings:** 42
 
-Full citations and links are maintained in [Public References](../docs/references.md).
+## Mapping catalog
 
-## Domain-level mapping
-
-| Control domain | NIST AI RMF | NIST AI 600-1 | ISO/IEC 42001 | ISO/IEC 23894 | OWASP LLM | OWASP agentic guidance |
+| Control | Framework | Provision | Category | Basis | Condition | Rationale |
 |---|---|---|---|---|---|---|
-| Administrative and governance | Primary | Primary | Primary | Primary | Supporting | Supporting |
-| Technical and security | Primary | Primary | Supporting | Supporting | Primary | Primary |
-| Data and privacy | Primary | Primary | Primary | Primary | Primary | Supporting |
-| Lifecycle | Primary | Primary | Primary | Primary | Supporting | Supporting |
-| Agentic AI | Supporting | Primary | Supporting | Supporting | Supporting | Primary |
-| Monitoring and operations | Primary | Primary | Primary | Primary | Supporting | Primary |
-| Vendor and supply chain | Primary | Primary | Primary | Primary | Primary | Primary |
+| AI-GOV-001 | ISO-IEC-42001 | 2023: 5.3; A.3.2 | requirement | source_supported | None stated | Directly addresses assigned AI roles, responsibilities, and authority. |
+| AI-GOV-002 | ISO-IEC-42001 | 2023: 5.2; A.2.2; A.2.3 | requirement | source_supported | None stated | Directly addresses AI policy establishment, communication, and review. |
+| AI-GOV-005 | ISO-IEC-42001 | 2023: 7.2; A.4.6 | requirement | source_supported | None stated | Directly addresses competence and human resources used across the AI lifecycle. |
+| AI-GOV-006 | ISO-IEC-42001 | 2023: 9.2; 10.1; 10.2 | requirement | source_supported | None stated | Directly addresses internal audit, continual improvement, and corrective action. |
+| AI-GOV-007 | ISO-IEC-42001 | 2023: 6.2; A.6.1.2; A.9.3 | requirement | source_supported | None stated | Directly addresses AI objectives and responsible development and use objectives. |
+| AI-GOV-009 | ISO-IEC-42001 | 2023: 9.3 | requirement | source_supported | None stated | Directly addresses management review of the AI management system. |
+| AI-GOV-010 | ISO-IEC-42001 | 2023: A.3.3; A.8.3 | requirement | source_supported | None stated | Directly addresses reporting AI concerns and adverse impacts. |
+| AI-USE-002 | EU-AI-ACT | 2024: Article 4 | requirement | inferred | Applies to providers and deployers within the Act's scope. | Article 4 directly requires measures supporting a sufficient level of AI literacy. |
+| AI-GOV-003 | ISO-IEC-27001 | 2022: A.5.9 | guideline | source_supported | None stated | The information and associated asset inventory control supports maintenance of an AI inventory. |
+| AI-INV-002 | ISO-IEC-42001 | 2023: A.4.2-A.4.6 | requirement | source_supported | None stated | Directly addresses documentation of data, tooling, system, computing, and human resources. |
+| AI-RSK-002 | ISO-IEC-42001 | 2023: A.5.2-A.5.5 | requirement | source_supported | None stated | Directly addresses an impact-assessment process and impacts on individuals, groups, and society. |
+| AI-RSK-003 | ISO-IEC-42001 | 2023: 6.1; 8.1 | requirement | source_supported | None stated | Directly addresses risk treatment planning and operational implementation. |
+| AI-GOV-004 | EU-AI-ACT | 2024: Article 9 | requirement | inferred | Applies to providers of high-risk AI systems. | Article 9 directly requires a documented, iterative risk-management system. |
+| AI-DAT-003 | ISO-IEC-42001 | 2023: A.7.3-A.7.5 | requirement | source_supported | None stated | Directly addresses data acquisition, quality, and provenance. |
+| AI-DAT-006 | ISO-IEC-42001 | 2023: A.7.6 | requirement | source_supported | None stated | Directly addresses criteria for AI data preparation. |
+| AI-DAT-007 | ISO-IEC-42001 | 2023: A.7.4 | requirement | source_supported | None stated | Directly addresses defining and documenting AI data-quality requirements. |
+| AI-DAT-007 | EU-AI-ACT | 2024: Article 10 | requirement | inferred | Applies to providers of high-risk AI systems using data-driven model development. | Article 10 directly addresses training, validation, and testing data governance and quality. |
+| AI-LCM-001 | ISO-IEC-42001 | 2023: A.6.2.2; A.8.2 | requirement | source_supported | None stated | Directly addresses system requirements and information necessary for users. |
+| AI-LCM-002 | ISO-IEC-42001 | 2023: A.6.2.4; A.6.2.5 | requirement | source_supported | None stated | Directly addresses verification, validation, and deployment readiness. |
+| AI-MOD-003 | ISO-IEC-27001 | 2022: A.8.32 | guideline | source_supported | None stated | Formal change management directly supports controlled model and AI configuration changes. |
+| AI-MOD-004 | ISO-IEC-42001 | 2023: A.6.2.4 | requirement | source_supported | None stated | Directly addresses defining and documenting AI verification and validation measures and criteria. |
+| AI-SEC-002 | ISO-IEC-27001 | 2022: A.5.15-A.5.18; A.8.2-A.8.5 | guideline | source_supported | None stated | Access-control, identity, authentication, and privileged-access requirements support AI identity enforcement. |
+| AI-SEC-002 | SOC-2 | 2017 with 2022 points of focus: CC6.1-CC6.3 | guideline | source_supported | None stated | Logical-access criteria support authentication, authorization, and least privilege for AI systems. |
+| AI-PLT-002 | SOC-2 | 2017 with 2022 points of focus: CC6.2; CC6.3 | guideline | source_supported | None stated | Logical and privileged access criteria support controlled AI platform administration. |
+| AI-SEC-005 | ISO-IEC-27001 | 2022: A.8.25-A.8.29 | guideline | source_supported | None stated | Secure development lifecycle and security-testing controls directly support secure AI application development. |
+| AI-SEC-005 | SOC-2 | 2017 with 2022 points of focus: CC8.1 | guideline | source_supported | None stated | Change-management criteria support authorized, tested, and controlled AI development changes. |
+| AI-HUM-001 | EU-AI-ACT | 2024: Article 14 | requirement | inferred | Applies to providers of high-risk AI systems and supports deployer oversight duties. | Article 14 directly requires effective human oversight measures for high-risk AI systems. |
+| AI-HUM-003 | ISO-IEC-42001 | 2023: A.6.2.7; A.8.2; A.8.5 | requirement | source_supported | None stated | Directly addresses technical documentation and information for users and interested parties. |
+| AI-HUM-003 | EU-AI-ACT | 2024: Article 13; Article 50 | requirement | inferred | Applies only to the relevant high-risk or transparency-triggering system and organizational role. | These provisions directly address instructions, transparency, and disclosure for specified AI systems. |
+| AI-OPS-001 | ISO-IEC-42001 | 2023: A.6.2.8 | requirement | source_supported | None stated | Directly addresses enabling AI event logging at least while the system is in use. |
+| AI-OPS-001 | EU-AI-ACT | 2024: Article 12 | requirement | inferred | Applies to providers of high-risk AI systems. | Article 12 directly requires automatic event logging over the system lifetime appropriate to its purpose. |
+| AI-OPS-001 | ISO-IEC-27001 | 2022: A.8.15; A.8.16 | guideline | source_supported | None stated | Logging and monitoring controls support AI traceability and detection. |
+| AI-OPS-001 | SOC-2 | 2017 with 2022 points of focus: CC7.2 | guideline | source_supported | None stated | Monitoring criteria support detection of anomalous AI events and activities. |
+| AI-OPS-003 | ISO-IEC-27001 | 2022: A.5.24-A.5.28 | guideline | source_supported | None stated | Incident planning, assessment, response, learning, and evidence controls support AI incident handling. |
+| AI-OPS-003 | DORA | 2022/2554: Articles 17-23 | guideline | inferred | Applies to an in-scope financial entity when the AI event is an ICT-related incident. | DORA directly addresses ICT incident management, classification, and reporting rather than AI incidents as a separate class. |
+| AI-OPS-004 | DORA | 2022/2554: Articles 11-12 | guideline | inferred | Applies to in-scope financial entities and relevant ICT-supported functions. | DORA response, recovery, backup, restoration, and recovery procedures support resilient AI operations. |
+| AI-OPS-004 | SOC-2 | 2017 with 2022 points of focus: A1.2; A1.3 | guideline | source_supported | None stated | Availability criteria support recovery, environmental protections, and tested continuity. |
+| AI-VSC-001 | ISO-IEC-27001 | 2022: A.5.19; A.5.21 | guideline | source_supported | None stated | Supplier relationship and ICT supply-chain controls support AI supplier due diligence. |
+| AI-VSC-001 | SOC-2 | 2017 with 2022 points of focus: CC9.2 | guideline | source_supported | None stated | Vendor and business-partner risk criteria support material AI supplier evaluation. |
+| AI-VSC-002 | ISO-IEC-27001 | 2022: A.5.20 | guideline | source_supported | None stated | Supplier agreement controls support enforceable AI security and information-protection terms. |
+| AI-VSC-004 | ISO-IEC-27001 | 2022: A.5.22 | guideline | source_supported | None stated | Supplier monitoring and change management directly support AI provider and subprocessor oversight. |
+| AI-VSC-005 | DORA | 2022/2554: Articles 28-30 | guideline | inferred | Applies to in-scope contractual arrangements for ICT services. | DORA third-party risk provisions support concentration, continuity, contractual, and exit planning for AI ICT services. |
 
-`Primary` means the source is a central basis for the domain. `Supporting` means it offers relevant context but is not relied on as a complete treatment.
+## Deliberate gaps
 
-## Control-level mapping
-
-| Control ID | Control title | Public-reference alignment |
-|---|---|---|
-| AI-GOV-001 | AI governance mandate and decision rights | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-GOV-002 | AI policy and acceptable-use boundaries | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001 |
-| AI-GOV-003 | AI inventory and accountable ownership | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894; OWASP-AGENTIC-STATE |
-| AI-GOV-004 | AI risk and impact assessment | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-GOV-005 | Competence and role-based awareness | NIST-AI-RMF; ISO-IEC-42001 |
-| AI-GOV-006 | Independent challenge and continual improvement | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-SEC-001 | Secure architecture and threat modeling | NIST-AI-RMF; NIST-AI-600-1; OWASP-LLM; OWASP-AGENTIC |
-| AI-SEC-002 | Identity, authentication, and least privilege | OWASP-LLM; OWASP-AGENTIC; OWASP-AGENTIC-STATE; NIST-AI-RMF |
-| AI-SEC-003 | Untrusted input and prompt-injection defenses | OWASP-LLM; OWASP-AGENTIC; NIST-AI-600-1 |
-| AI-SEC-004 | Safe output handling | OWASP-LLM; OWASP-AGENTIC |
-| AI-SEC-005 | Secure development, testing, and vulnerability management | OWASP-LLM; OWASP-AGENTIC; NIST-AI-RMF |
-| AI-SEC-006 | Resource and service abuse protection | OWASP-LLM; OWASP-AGENTIC; NIST-AI-600-1 |
-| AI-DAT-001 | Authorized data use and minimization | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-DAT-002 | Data classification and protection | NIST-AI-RMF; NIST-AI-600-1; OWASP-LLM; ISO-IEC-42001 |
-| AI-DAT-003 | Data provenance, quality, and permitted sourcing | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; OWASP-LLM |
-| AI-DAT-004 | Privacy assessment and individual protections | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-LCM-001 | Intended use, limitations, and success criteria | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-LCM-002 | Evaluation, validation, and release readiness | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; OWASP-LLM; OWASP-AGENTIC |
-| AI-LCM-003 | Material change and reassessment | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894; OWASP-AGENTIC |
-| AI-LCM-004 | Suspension and retirement | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-AGT-001 | Agent identity and delegated authority | OWASP-AGENTIC; OWASP-AGENTIC-STATE; NIST-AI-600-1 |
-| AI-AGT-002 | Tool, connector, and action boundaries | OWASP-AGENTIC; OWASP-AGENTIC-STATE; OWASP-LLM |
-| AI-AGT-003 | Human approval and irreversible-action safeguards | OWASP-AGENTIC; OWASP-AGENTIC-STATE; NIST-AI-RMF |
-| AI-AGT-004 | Agent memory and state protection | OWASP-AGENTIC; OWASP-AGENTIC-STATE; NIST-AI-600-1 |
-| AI-AGT-005 | Multi-agent and delegation controls | OWASP-AGENTIC; OWASP-AGENTIC-STATE |
-| AI-AGT-006 | Agent containment and emergency stop | OWASP-AGENTIC; OWASP-AGENTIC-STATE; NIST-AI-600-1 |
-| AI-OPS-001 | Logging and traceability | NIST-AI-RMF; NIST-AI-600-1; OWASP-AGENTIC-STATE; OWASP-LLM |
-| AI-OPS-002 | Behavioral and control monitoring | NIST-AI-RMF; NIST-AI-600-1; OWASP-AGENTIC-STATE; ISO-IEC-42001 |
-| AI-OPS-003 | AI incident response and reporting | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; OWASP-AGENTIC-STATE |
-| AI-OPS-004 | Resilience, safe failure, and recovery | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894; OWASP-AGENTIC |
-| AI-VSC-001 | AI supplier and service due diligence | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894; OWASP-LLM |
-| AI-VSC-002 | Contractual AI safeguards | NIST-AI-RMF; NIST-AI-600-1; ISO-IEC-42001; ISO-IEC-23894 |
-| AI-VSC-003 | Component provenance and integrity | OWASP-LLM; OWASP-AGENTIC; NIST-AI-600-1 |
-| AI-VSC-004 | Supplier change and subprocessor oversight | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894; OWASP-LLM |
-| AI-VSC-005 | Concentration, continuity, and exit planning | NIST-AI-RMF; ISO-IEC-42001; ISO-IEC-23894 |
-
-## Security-threat coverage view
-
-The following view helps practitioners locate controls for common LLM and agentic threat themes. It is not an OWASP compliance matrix.
-
-| Threat theme | Most relevant controls |
-|---|---|
-| Prompt or instruction manipulation | AI-SEC-001, AI-SEC-003, AI-SEC-004, AI-AGT-002, AI-LCM-002 |
-| Sensitive information disclosure | AI-DAT-001, AI-DAT-002, AI-DAT-004, AI-SEC-002, AI-SEC-004, AI-OPS-001 |
-| Supply-chain or component compromise | AI-VSC-001, AI-VSC-003, AI-VSC-004, AI-SEC-005, AI-LCM-003 |
-| Data or model poisoning | AI-DAT-003, AI-SEC-001, AI-LCM-002, AI-AGT-004, AI-OPS-002 |
-| Unsafe model output or code | AI-SEC-004, AI-AGT-002, AI-AGT-003, AI-LCM-002, AI-OPS-002 |
-| Excessive agency or privilege abuse | AI-SEC-002, AI-AGT-001, AI-AGT-002, AI-AGT-003, AI-AGT-006 |
-| Memory manipulation or leakage | AI-DAT-002, AI-DAT-004, AI-AGT-004, AI-OPS-001, AI-OPS-002 |
-| Inter-agent trust and cascading failure | AI-AGT-005, AI-AGT-006, AI-OPS-001, AI-OPS-002, AI-OPS-004 |
-| Resource exhaustion or runaway cost | AI-SEC-006, AI-AGT-002, AI-AGT-005, AI-AGT-006, AI-OPS-002 |
-| Overreliance or ineffective oversight | AI-GOV-005, AI-LCM-001, AI-LCM-002, AI-AGT-003, AI-OPS-002 |
-
-## Known gaps and future overlays
-
-The initial library intentionally provides a cross-industry baseline. Before operational use, most organizations will need additional overlays or implementation standards for:
-
-- jurisdiction-specific AI, privacy, employment, consumer, financial-services, health, safety, and records obligations;
-- sector-specific model risk management and validation;
-- fairness, accessibility, civil-rights, and consequential-decision testing methods;
-- child safety, physical safety, cybersecurity product, or critical-infrastructure use;
-- intellectual-property, content provenance, disclosure, and synthetic-media obligations;
-- environmental and computational-resource measurement;
-- detailed secure-configuration baselines for particular platforms and agent runtimes;
-- quantitative evaluation thresholds, sampling, test independence, and evidence-retention periods;
-- control test procedures and operating-effectiveness criteria;
-- risk-tier and scenario selection logic, which is deliberately deferred.
-
-These are not omissions to solve by silently expanding every baseline control. They should be explicit overlays with accountable subject-matter review.
+Controls absent from this catalog are intentionally unmapped. Add a mapping only when
+the relationship can be cited, explained, conditioned where necessary, and defended
+with high confidence. Do not add `unresolved` placeholders or force every control into
+each framework.

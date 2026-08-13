@@ -20,6 +20,11 @@ DOMAIN_TITLES = {
     "agentic_ai": "Agentic AI",
     "monitoring_operations": "Monitoring and Operations",
     "vendor_supply_chain": "Vendor and Supply Chain",
+    "usage_workforce": "AI Usage and Workforce",
+    "inventory_lifecycle": "Inventory and Lifecycle Governance",
+    "risk_impact_compliance": "Risk, Impact, and Compliance",
+    "systems_models_platforms": "Systems, Models, and Platforms",
+    "human_oversight_transparency": "Human Oversight and Transparency",
 }
 
 

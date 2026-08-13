@@ -4,20 +4,25 @@
 This is the human-readable view of the authoritative [`data/controls.yaml`](../data/controls.yaml) control library. Changes must be made in the YAML source and regenerated with `python scripts/render_control_catalog.py`.
 
 - **Library:** Independent AI Control Library
-- **Library version:** `0.1.0`
-- **Schema version:** `1.0`
+- **Library version:** `1.0.0-rc.1`
+- **Schema version:** `2.0`
 - **Status:** `ready_for_review`
-- **Controls:** 35
+- **Controls:** 70
 
 ## Contents
 
-- [Administrative Governance](#administrative-governance) (6)
+- [Administrative Governance](#administrative-governance) (10)
 - [Technical Security](#technical-security) (6)
-- [Data and Privacy](#data-and-privacy) (4)
+- [Data and Privacy](#data-and-privacy) (9)
 - [Lifecycle](#lifecycle) (4)
 - [Agentic AI](#agentic-ai) (6)
-- [Monitoring and Operations](#monitoring-and-operations) (4)
-- [Vendor and Supply Chain](#vendor-and-supply-chain) (5)
+- [Monitoring and Operations](#monitoring-and-operations) (6)
+- [Vendor and Supply Chain](#vendor-and-supply-chain) (9)
+- [AI Usage and Workforce](#ai-usage-and-workforce) (4)
+- [Inventory and Lifecycle Governance](#inventory-and-lifecycle-governance) (3)
+- [Risk, Impact, and Compliance](#risk,-impact,-and-compliance) (3)
+- [Systems, Models, and Platforms](#systems,-models,-and-platforms) (7)
+- [Human Oversight and Transparency](#human-oversight-and-transparency) (3)
 
 ## Administrative Governance
 
@@ -116,6 +121,70 @@ This is the human-readable view of the authoritative [`data/controls.yaml`](../d
 **Implementation notes:** Independence may be organizational or procedural but reviewers must be able to challenge accountable owners.
 
 **References:** `NIST-AI-RMF`, `ISO-IEC-42001`, `ISO-IEC-23894`
+
+### AI-GOV-007: Responsible AI objectives and measures
+
+**Layer:** `enterprise`
+
+**Objective:** Translate responsible AI principles into governed and measurable outcomes.
+
+**Requirement:** The organization shall define, approve, measure, and periodically review objectives for responsible AI development and use, including relevant fairness, transparency, reliability, safety, security, privacy, and oversight outcomes.
+
+**Applicability:** Applies to the enterprise AI governance program and material AI initiatives.
+
+**Evidence examples:** approved objectives, measures and thresholds, governance dashboard, review minutes, improvement actions
+
+**Implementation notes:** Objectives should be measurable where practicable and should not imply unsupported precision or universal fairness.
+
+**References:** `NIST-AI-RMF`, `ISO-IEC-42001`
+
+### AI-GOV-008: AI exceptions and residual-risk acceptance
+
+**Layer:** `both`
+
+**Objective:** Ensure deviations are visible, authorized, temporary, and risk informed.
+
+**Requirement:** Exceptions to AI controls shall document scope, rationale, affected systems, residual risk, compensating measures, accountable approval, expiration, and review or closure criteria.
+
+**Applicability:** Applies whenever an applicable AI requirement cannot be met as designed.
+
+**Evidence examples:** exception request, risk acceptance, compensating-control evidence, expiry review, closure record
+
+**Implementation notes:** Do not use exceptions to bypass prohibited uses or non-waivable legal obligations.
+
+**References:** `NIST-AI-RMF`, `ISO-IEC-42001`, `ISO-IEC-23894`
+
+### AI-GOV-009: AI governance management review
+
+**Layer:** `enterprise`
+
+**Objective:** Maintain leadership visibility and direction over AI governance performance.
+
+**Requirement:** Leadership shall periodically review AI portfolio risk, performance, incidents, complaints, exceptions, assurance results, resource adequacy, changes in obligations, and improvement actions, and shall record decisions and accountable actions.
+
+**Applicability:** Applies to the enterprise AI governance system.
+
+**Evidence examples:** management review agenda, portfolio dashboard, meeting record, decision log, action tracker
+
+**Implementation notes:** Use a cadence proportionate to portfolio change and risk rather than relying only on an annual review.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-GOV-010: AI concerns and adverse-impact reporting
+
+**Layer:** `both`
+
+**Objective:** Enable timely reporting and investigation of suspected AI harm or misconduct.
+
+**Requirement:** The organization shall provide accessible and protected channels for personnel and relevant external parties to report AI concerns, adverse impacts, misuse, or control failures and shall triage, investigate, remediate, and track reports.
+
+**Applicability:** Applies enterprise-wide and to systems affecting external parties.
+
+**Evidence examples:** reporting channel, intake procedure, case records, investigation results, remediation tracking
+
+**Implementation notes:** Coordinate with whistleblowing, complaints, privacy, product support, and incident processes while protecting reporters.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
 
 
 ## Technical Security
@@ -282,6 +351,86 @@ This is the human-readable view of the authoritative [`data/controls.yaml`](../d
 **Implementation notes:** Include inferred attributes, model memory, embeddings, monitoring data, and provider-retained interactions.
 
 **References:** `NIST-AI-RMF`, `NIST-AI-600-1`, `ISO-IEC-42001`, `ISO-IEC-23894`
+
+### AI-DAT-005: AI data acquisition and rights
+
+**Layer:** `ai_system`
+
+**Objective:** Ensure data is obtained and used under documented authority and restrictions.
+
+**Requirement:** Data acquired for AI development, evaluation, retrieval, operation, or improvement shall have documented source, ownership or license basis, permitted uses, restrictions, retention, and required approvals.
+
+**Applicability:** Applies to purchased, licensed, collected, scraped, generated, customer-provided, open, and third-party data.
+
+**Evidence examples:** data acquisition record, license, consent or legal-basis record, terms review, approval
+
+**Implementation notes:** Public availability does not by itself establish permission, suitability, accuracy, or absence of personal data.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `NIST-AI-600-1`
+
+### AI-DAT-006: AI data preparation and transformation
+
+**Layer:** `ai_system`
+
+**Objective:** Make data-selection and preparation decisions repeatable and reviewable.
+
+**Requirement:** The organization shall define and record criteria and methods for selecting, cleaning, labeling, filtering, transforming, augmenting, excluding, and versioning data used by AI systems.
+
+**Applicability:** Applies to training, fine-tuning, evaluation, retrieval, grounding, and feedback data.
+
+**Evidence examples:** preparation procedure, transformation code, dataset version, exclusion criteria, review record
+
+**Implementation notes:** Preserve enough lineage to reproduce material datasets and investigate errors without retaining unnecessary personal data.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-DAT-007: AI data quality and representativeness
+
+**Layer:** `ai_system`
+
+**Objective:** Ensure data is suitable for the intended AI purpose and affected population.
+
+**Requirement:** Data used by material AI systems shall be evaluated against defined requirements for relevance, accuracy, completeness, timeliness, integrity, representativeness, bias, and known limitations.
+
+**Applicability:** Applies where data materially affects model behavior, retrieval, evaluation, or decisions.
+
+**Evidence examples:** quality specification, profiling results, bias analysis, representativeness review, approved limitation
+
+**Implementation notes:** Quality is purpose-specific; document gaps rather than asserting that a dataset is universally representative.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `NIST-AI-600-1`
+
+### AI-DAT-008: Retrieval and grounding governance
+
+**Layer:** `ai_system`
+
+**Objective:** Keep retrieved knowledge authorized, current, traceable, and correctly access filtered.
+
+**Requirement:** Retrieval systems shall govern source approval, provenance, update cadence, integrity, user-level authorization, tenant isolation, relevance, citation, and removal from source through index.
+
+**Applicability:** Applies to retrieval-augmented generation, enterprise search, knowledge assistants, and agent memory retrieval.
+
+**Evidence examples:** source register, ingestion approval, ACL test, retrieval evaluation, freshness monitor, deletion test
+
+**Implementation notes:** Validate authorization at retrieval time and account for stale indexes, copied chunks, embeddings, caches, and derived stores.
+
+**References:** `NIST-AI-600-1`, `OWASP-LLM`, `OWASP-AGENTIC`
+
+### AI-DAT-009: Feedback and learning-data governance
+
+**Layer:** `ai_system`
+
+**Objective:** Prevent unreviewed operational data from changing AI behavior or training use.
+
+**Requirement:** Prompts, outputs, user feedback, monitoring data, and operational interactions shall not be used for model training, tuning, reinforcement, or evaluation unless the use is authorized, minimized, quality controlled, and isolated from untrusted manipulation.
+
+**Applicability:** Applies to systems or providers with feedback loops, adaptive behavior, or improvement features.
+
+**Evidence examples:** data-flow configuration, opt-in record, quarantine design, training approval, provider setting
+
+**Implementation notes:** Treat product-improvement telemetry as a distinct purpose requiring an explicit decision.
+
+**References:** `NIST-AI-600-1`, `OWASP-LLM`
 
 
 ## Lifecycle
@@ -516,6 +665,38 @@ This is the human-readable view of the authoritative [`data/controls.yaml`](../d
 
 **References:** `NIST-AI-RMF`, `ISO-IEC-42001`, `ISO-IEC-23894`, `OWASP-AGENTIC`
 
+### AI-OPS-005: Model, data, and retrieval drift monitoring
+
+**Layer:** `ai_system`
+
+**Objective:** Detect changes that could invalidate performance, safety, or control assumptions.
+
+**Requirement:** Production AI shall monitor relevant changes in model behavior, input and reference data, embeddings, retrieval quality, performance, and control effectiveness against defined thresholds and trigger investigation or reassessment.
+
+**Applicability:** Applies where changing data, models, providers, or context can materially affect outcomes.
+
+**Evidence examples:** baseline, drift metric, threshold, alert, investigation, reassessment record
+
+**Implementation notes:** Use outcome and control indicators, not only statistical drift, and account for low-volume consequential use.
+
+**References:** `NIST-AI-RMF`, `NIST-AI-600-1`, `ISO-IEC-42001`
+
+### AI-OPS-006: AI nonconformity and corrective action
+
+**Layer:** `both`
+
+**Objective:** Correct control failures and prevent recurrence.
+
+**Requirement:** AI nonconformities and material deficiencies shall be recorded, contained, root-caused, remediated, verified for effectiveness, and used to update relevant controls, assessments, tests, and guidance.
+
+**Applicability:** Applies to findings from monitoring, incidents, complaints, testing, audit, and management review.
+
+**Evidence examples:** finding record, root-cause analysis, corrective-action plan, verification, control update
+
+**Implementation notes:** Closure should require evidence of effectiveness rather than completion of an administrative task.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
 
 ## Vendor and Supply Chain
 
@@ -598,3 +779,402 @@ This is the human-readable view of the authoritative [`data/controls.yaml`](../d
 **Implementation notes:** Consider proprietary prompts, evaluation assets, embeddings, fine-tunes, logs, integrations, and skills required to migrate.
 
 **References:** `NIST-AI-RMF`, `ISO-IEC-42001`, `ISO-IEC-23894`
+
+### AI-VSC-006: Vendor customer-data training restrictions
+
+**Layer:** `both`
+
+**Objective:** Prevent unauthorized vendor use of organizational data to train or improve AI.
+
+**Requirement:** Contracts and service configurations shall prohibit provider training, fine-tuning, evaluation, or product improvement using organizational data unless the use is explicitly authorized, bounded, documented, and monitored.
+
+**Applicability:** Applies when third-party AI receives organizational, customer, employee, or other non-public data.
+
+**Evidence examples:** contract clause, provider setting, data-flow review, authorization, monitoring evidence
+
+**Implementation notes:** Address prompts, outputs, uploads, feedback, telemetry, embeddings, and derived datasets separately.
+
+**References:** `NIST-AI-600-1`, `OWASP-LLM`
+
+### AI-VSC-007: Vendor AI artifact deletion and return
+
+**Layer:** `both`
+
+**Objective:** Ensure organizational data and AI-derived artifacts can be securely removed or returned.
+
+**Requirement:** Material AI suppliers shall support verified deletion or return of customer data, prompts, outputs, embeddings, fine-tunes, memory, logs, and derived artifacts upon request, expiration, or termination, subject to documented legal exceptions.
+
+**Applicability:** Applies where suppliers store or derive artifacts from organizational data.
+
+**Evidence examples:** deletion clause, retention schedule, deletion request, attestation, technical deletion test
+
+**Implementation notes:** Define treatment of backups, legal holds, de-identified data, and artifacts embedded in trained or tuned models.
+
+**References:** `NIST-AI-RMF`, `ISO-IEC-42001`
+
+### AI-VSC-008: Vendor AI incident notification and cooperation
+
+**Layer:** `both`
+
+**Objective:** Obtain timely information and assistance for AI-related incidents and failures.
+
+**Requirement:** Supplier agreements shall define AI security, privacy, misuse, availability, model-behavior, and control incidents; notification timelines; required information; evidence preservation; cooperation; remediation; and continuing updates.
+
+**Applicability:** Applies to material third-party AI services and dependencies.
+
+**Evidence examples:** incident clause, notification procedure, contact test, incident report, corrective-action evidence
+
+**Implementation notes:** Align supplier obligations with the organization's regulatory, customer, and operational reporting timelines.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-VSC-009: Vendor AI assurance and audit rights
+
+**Layer:** `both`
+
+**Objective:** Obtain sufficient evidence that material supplier AI controls operate as represented.
+
+**Requirement:** The organization shall obtain proportionate independent assurance, testing information, control evidence, and contractual assessment or audit rights for material AI suppliers and shall track deficiencies and limitations.
+
+**Applicability:** Applies where supplier failure could create material security, privacy, compliance, resilience, or customer impact.
+
+**Evidence examples:** assurance report, test summary, audit clause, evidence request, deficiency tracker
+
+**Implementation notes:** General security reports may not cover model behavior, training-data use, tenant isolation, or AI-specific incident processes.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `ISO-IEC-23894`
+
+
+## AI Usage and Workforce
+
+### AI-USE-001: Approved AI tools and configurations
+
+**Layer:** `enterprise`
+
+**Objective:** Prevent unmanaged enterprise use of AI services and features.
+
+**Requirement:** The organization shall define approved AI tools, models, features, plugins, connectors, and configuration baselines and shall identify, restrict, or remediate unauthorized use.
+
+**Applicability:** Applies to workforce and third-party use of AI on the organization's behalf.
+
+**Evidence examples:** approved-tool register, configuration baseline, discovery report, access restriction, remediation record
+
+**Implementation notes:** Include embedded AI features and user-enabled connectors, not only standalone AI products.
+
+**References:** `NIST-AI-RMF`, `NIST-AI-600-1`
+
+### AI-USE-002: AI literacy and user awareness
+
+**Layer:** `enterprise`
+
+**Objective:** Equip users to recognize AI capabilities, limitations, obligations, and escalation needs.
+
+**Requirement:** Personnel using or overseeing AI shall receive role-appropriate literacy and awareness covering permitted use, data handling, output verification, human responsibility, known limitations, misuse, and concern reporting.
+
+**Applicability:** Applies to AI users, owners, approvers, developers, operators, and reviewers.
+
+**Evidence examples:** training curriculum, role matrix, completion records, knowledge assessment, refresher schedule
+
+**Implementation notes:** Distinguish general literacy from specialist engineering, legal, validation, and oversight competence.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-USE-003: User verification of material AI outputs
+
+**Layer:** `both`
+
+**Objective:** Reduce harm from overreliance on incorrect or unsuitable AI output.
+
+**Requirement:** Material AI outputs shall be verified against authoritative sources or qualified judgment before consequential decisions, external communication, code deployment, or legal, regulatory, financial, safety, or security use.
+
+**Applicability:** Applies when incorrect output could create more than negligible harm.
+
+**Evidence examples:** user procedure, review checklist, source citation, approval record, quality sample
+
+**Implementation notes:** Define what verification means for the context and avoid meaningless human approval that lacks time, information, or authority.
+
+**References:** `NIST-AI-600-1`, `OWASP-LLM`
+
+### AI-USE-004: Confidential and restricted information use boundaries
+
+**Layer:** `enterprise`
+
+**Objective:** Prevent personnel from exposing protected information through AI tools.
+
+**Requirement:** The organization shall specify which information classifications may be entered into each approved AI service and enforce restrictions through guidance, configuration, access control, and monitoring appropriate to risk.
+
+**Applicability:** Applies whenever personnel can submit organizational or third-party information to AI.
+
+**Evidence examples:** data-use matrix, user guidance, DLP policy, tenant configuration, monitoring alerts
+
+**Implementation notes:** Address prompts, uploads, connectors, meeting content, code, outputs, feedback, and provider retention.
+
+**References:** `NIST-AI-600-1`, `OWASP-LLM`
+
+
+## Inventory and Lifecycle Governance
+
+### AI-INV-001: AI discovery and inventory reconciliation
+
+**Layer:** `enterprise`
+
+**Objective:** Identify unregistered and materially incomplete AI use.
+
+**Requirement:** The organization shall use proportionate discovery methods to identify AI services, embedded features, models, endpoints, agents, connectors, and material use cases and reconcile findings to the approved inventory.
+
+**Applicability:** Applies across technology, procurement, cloud, SaaS, development, and workforce environments.
+
+**Evidence examples:** discovery method, SaaS inventory, endpoint report, reconciliation log, remediation ticket
+
+**Implementation notes:** Define tolerances and ownership for shadow AI rather than assuming questionnaires provide complete coverage.
+
+**References:** `NIST-AI-RMF`, `OWASP-AGENTIC-STATE`
+
+### AI-INV-002: AI resource and dependency documentation
+
+**Layer:** `ai_system`
+
+**Objective:** Record the resources required to develop, operate, oversee, change, and retire AI.
+
+**Requirement:** Each material AI system shall document its data, models, prompts, tools, integrations, compute, environments, identities, human competencies, suppliers, and operational dependencies.
+
+**Applicability:** Applies throughout the lifecycle of material AI systems and agents.
+
+**Evidence examples:** system record, architecture record, dependency inventory, AI bill of materials, responsibility matrix
+
+**Implementation notes:** Link records to versions and owners so changes can trigger targeted reassessment.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-INV-003: AI lifecycle status and review
+
+**Layer:** `ai_system`
+
+**Objective:** Keep inventory decisions aligned with actual system status and business need.
+
+**Requirement:** AI systems shall have controlled lifecycle states, review dates, approval status, and criteria for experimentation, production, suspension, decommissioning, and archival.
+
+**Applicability:** Applies to proposed, experimental, approved, production, suspended, and retired AI.
+
+**Evidence examples:** lifecycle state model, inventory record, periodic attestation, suspension record, retirement approval
+
+**Implementation notes:** Expired experiments and ownerless systems should not remain implicitly authorized.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+
+## Risk, Impact, and Compliance
+
+### AI-RSK-001: AI regulatory role and applicability classification
+
+**Layer:** `both`
+
+**Objective:** Determine which legal and regulatory duties apply to an AI use.
+
+**Requirement:** The organization shall document relevant jurisdictions, organizational roles, system classifications, prohibited or restricted practices, transparency duties, and sector-specific obligations before approval and after material change.
+
+**Applicability:** Applies where AI may be subject to legal, regulatory, contractual, or sector requirements.
+
+**Evidence examples:** applicability assessment, legal analysis, role classification, obligation register, change review
+
+**Implementation notes:** Classification is context dependent and should be validated by qualified counsel where material.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-RSK-002: AI impact assessment
+
+**Layer:** `ai_system`
+
+**Objective:** Identify potential effects on individuals, groups, customers, workers, and society.
+
+**Requirement:** Material AI systems shall undergo a documented impact assessment addressing intended and foreseeable effects, affected parties, severity, likelihood, distribution of benefits and harms, accessibility, contestability, and mitigation.
+
+**Applicability:** Applies to consequential, externally facing, employee-facing, or otherwise materially impactful AI.
+
+**Evidence examples:** impact assessment, stakeholder analysis, harm scenarios, mitigation plan, approval record
+
+**Implementation notes:** Keep impact assessment distinct from technical security risk assessment while coordinating shared facts and treatments.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `ISO-IEC-23894`
+
+### AI-RSK-003: AI risk treatment and residual-risk approval
+
+**Layer:** `both`
+
+**Objective:** Ensure identified AI risks lead to accountable decisions and verified treatment.
+
+**Requirement:** Identified AI risks shall have documented treatment decisions, owners, deadlines, control dependencies, acceptance authority, and verification of completion and residual risk.
+
+**Applicability:** Applies to risks identified through intake, assessment, testing, monitoring, incidents, or assurance.
+
+**Evidence examples:** risk treatment plan, remediation tickets, acceptance approval, control evidence, closure validation
+
+**Implementation notes:** Track dependencies and aggregate portfolio risk rather than closing issues solely because an owner accepted them.
+
+**References:** `ISO-IEC-42001`, `ISO-IEC-23894`, `NIST-AI-RMF`
+
+
+## Systems, Models, and Platforms
+
+### AI-MOD-001: Model inventory and version control
+
+**Layer:** `ai_system`
+
+**Objective:** Maintain traceability of approved models and behavior-affecting configuration.
+
+**Requirement:** The organization shall inventory approved models, versions, adapters, fine-tunes, system prompts, safety settings, endpoints, and deployment locations and shall preserve version and approval history.
+
+**Applicability:** Applies to internally or externally supplied models used in material AI systems.
+
+**Evidence examples:** model registry, configuration repository, version history, approval record, deployment inventory
+
+**Implementation notes:** Record provider-managed model aliases and detect silent version changes where feasible.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `OWASP-LLM`
+
+### AI-MOD-002: Model selection and approval
+
+**Layer:** `ai_system`
+
+**Objective:** Select models that are suitable, lawful, supportable, and proportionate to the use.
+
+**Requirement:** Models shall be evaluated and approved for intended capability, limitations, data handling, licensing, security, safety, performance, support, location, and dependency risk before material use.
+
+**Applicability:** Applies to new models and material model substitutions.
+
+**Evidence examples:** selection criteria, comparative evaluation, legal review, security review, approval
+
+**Implementation notes:** A more capable model may introduce unnecessary autonomy, data exposure, cost, or concentration risk.
+
+**References:** `NIST-AI-RMF`, `NIST-AI-600-1`, `ISO-IEC-42001`
+
+### AI-MOD-003: Model and behavior-configuration change control
+
+**Layer:** `ai_system`
+
+**Objective:** Prevent untested changes from invalidating an approved AI risk decision.
+
+**Requirement:** Changes to models, versions, adapters, fine-tuning, prompts, parameters, guardrails, tools, retrieval sources, and safety settings shall be versioned, impact assessed, tested, approved, monitored, and reversible where feasible.
+
+**Applicability:** Applies to material production AI and controlled preproduction environments.
+
+**Evidence examples:** change request, version diff, impact assessment, test results, approval, rollback record
+
+**Implementation notes:** Define materiality triggers for provider-managed updates and emergency changes.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `OWASP-LLM`
+
+### AI-MOD-004: Model evaluation and acceptance thresholds
+
+**Layer:** `ai_system`
+
+**Objective:** Demonstrate that a selected or changed model meets defined use-case requirements.
+
+**Requirement:** Material models shall be evaluated using representative and adversarial tests against documented performance, robustness, security, safety, fairness, and reliability thresholds before approval and after relevant change.
+
+**Applicability:** Applies to models whose behavior materially affects system outcomes.
+
+**Evidence examples:** evaluation plan, dataset description, test results, threshold decision, independent challenge
+
+**Implementation notes:** Separate model evaluation from end-to-end system validation and record uncertainty and known test limitations.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `NIST-AI-600-1`
+
+### AI-PLT-001: AI platform and tenant isolation
+
+**Layer:** `ai_system`
+
+**Objective:** Prevent unauthorized access or data movement across platform trust boundaries.
+
+**Requirement:** AI platforms shall isolate tenants, environments, workloads, model endpoints, retrieval stores, caches, logs, and memory according to approved identity and data-classification boundaries.
+
+**Applicability:** Applies to shared, hosted, multi-tenant, or multi-environment AI platforms.
+
+**Evidence examples:** platform architecture, segmentation policy, tenant configuration, isolation test, penetration test
+
+**Implementation notes:** Test both management-plane and data-plane boundaries, including embeddings and derived artifacts.
+
+**References:** `OWASP-LLM`, `OWASP-AGENTIC`, `NIST-AI-600-1`
+
+### AI-PLT-002: AI platform privileged administration
+
+**Layer:** `ai_system`
+
+**Objective:** Protect high-impact AI platform and model-management functions.
+
+**Requirement:** Privileged AI platform access shall use named identities, strong authentication, least privilege, separation of duties, time-bound elevation where feasible, logging, and periodic access review.
+
+**Applicability:** Applies to platform administration, model deployment, safety settings, data stores, gateways, and tenant configuration.
+
+**Evidence examples:** privileged-role matrix, MFA configuration, elevation record, admin log, access review
+
+**Implementation notes:** Include vendor support access and break-glass accounts in the control design.
+
+**References:** `NIST-AI-RMF`, `OWASP-AGENTIC-STATE`
+
+### AI-PLT-003: AI endpoint and gateway governance
+
+**Layer:** `ai_system`
+
+**Objective:** Apply consistent policy enforcement to model and AI-service interfaces.
+
+**Requirement:** Model endpoints and AI APIs shall be inventoried, authenticated, authorized, scoped, rate limited, monitored, and protected against unauthorized models, data flows, tools, and destinations.
+
+**Applicability:** Applies to internal and external model endpoints, gateways, brokers, and AI service APIs.
+
+**Evidence examples:** endpoint inventory, gateway policy, token scope, allowlist, rate-limit test, traffic log
+
+**Implementation notes:** Enforce authorization outside the model and distinguish user, application, agent, and service identities.
+
+**References:** `OWASP-LLM`, `OWASP-AGENTIC`, `NIST-AI-600-1`
+
+
+## Human Oversight and Transparency
+
+### AI-HUM-001: Human oversight design and authority
+
+**Layer:** `ai_system`
+
+**Objective:** Give qualified people effective authority to understand, challenge, override, or stop AI operation.
+
+**Requirement:** Material AI systems shall define oversight roles, required competence, information and interfaces, intervention points, escalation paths, override authority, and conditions for suspension or safe continuation.
+
+**Applicability:** Applies to consequential, externally impactful, automated, safety-relevant, or high-autonomy AI.
+
+**Evidence examples:** oversight plan, role assignment, user interface, intervention test, exercise record
+
+**Implementation notes:** Human presence alone is insufficient if the reviewer lacks information, time, authority, or a practical intervention mechanism.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`
+
+### AI-HUM-002: Human decision accountability and contestability
+
+**Layer:** `both`
+
+**Objective:** Preserve accountable decision ownership and appropriate routes to challenge AI-influenced outcomes.
+
+**Requirement:** The organization shall assign accountability for AI-influenced decisions and provide proportionate review, appeal, correction, or contest mechanisms when outcomes can materially affect individuals or customers.
+
+**Applicability:** Applies to consequential decision support and automated decision processes.
+
+**Evidence examples:** decision responsibility matrix, review procedure, appeal channel, correction record, outcome sample
+
+**Implementation notes:** Avoid treating an AI recommendation as neutral evidence or transferring accountability to a vendor or model.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `ISO-IEC-23894`
+
+### AI-HUM-003: AI disclosure and user information
+
+**Layer:** `ai_system`
+
+**Objective:** Provide users and affected parties with information needed for safe and informed interaction.
+
+**Requirement:** AI systems shall provide context-appropriate disclosure of AI interaction or generated content and communicate intended use, limitations, human responsibilities, support, and material risks where required or appropriate.
+
+**Applicability:** Applies to user-facing, customer-facing, synthetic-content, and materially decision-influencing AI.
+
+**Evidence examples:** user notice, system documentation, interface label, limitation statement, communication review
+
+**Implementation notes:** Disclosure should be understandable and useful, not merely a generic disclaimer.
+
+**References:** `ISO-IEC-42001`, `NIST-AI-RMF`, `NIST-AI-600-1`
