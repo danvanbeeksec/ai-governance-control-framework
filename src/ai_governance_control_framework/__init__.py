@@ -6,7 +6,7 @@ from importlib.resources import files
 from pathlib import Path
 
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
 def controls_bytes() -> bytes:
@@ -37,6 +37,23 @@ def mappings_bytes() -> bytes:
 def mappings_text() -> str:
     """Return the mapping artifact as UTF-8 text."""
     return mappings_bytes().decode("utf-8")
+
+
+def agent_baseline_crosswalk_bytes() -> bytes:
+    """Return the non-authoritative Agent Baseline traceability crosswalk."""
+    packaged = files(__package__).joinpath("resources", "agent-baseline-crosswalk.yaml")
+    try:
+        return packaged.read_bytes()
+    except FileNotFoundError:
+        source_checkout = (
+            Path(__file__).resolve().parents[2] / "data" / "agent-baseline-crosswalk.yaml"
+        )
+        return source_checkout.read_bytes()
+
+
+def agent_baseline_crosswalk_text() -> str:
+    """Return the Agent Baseline traceability crosswalk as UTF-8 text."""
+    return agent_baseline_crosswalk_bytes().decode("utf-8")
 
 
 def applicability_taxonomy_bytes() -> bytes:

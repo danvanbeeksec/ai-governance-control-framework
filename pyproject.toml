@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ai-governance-control-framework"
-version = "1.1.0"
+version = "1.2.0"
 description = "Installable distribution of the Independent AI Control Library"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -26,3 +26,4 @@ packages = ["src/ai_governance_control_framework"]
 "data/controls.yaml" = "ai_governance_control_framework/resources/controls.yaml"
 "data/mappings.yaml" = "ai_governance_control_framework/resources/mappings.yaml"
 "data/applicability-taxonomy.yaml" = "ai_governance_control_framework/resources/applicability-taxonomy.yaml"
+"data/agent-baseline-crosswalk.yaml" = "ai_governance_control_framework/resources/agent-baseline-crosswalk.yaml"

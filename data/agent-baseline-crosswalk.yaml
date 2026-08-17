@@ -1,0 +1,55 @@
+schema_version: "1.0"
+source:
+  name: Agent Baseline
+  version: 1.0-draft
+  status: draft
+  repository: https://github.com/agentbaseline/agentbaseline
+  commit: 8954684dd3221ae0613a55dabfc1b6bc10d23705
+  canonical_artifact: whitepaper/controls.yaml
+  license: CC-BY-SA-4.0
+purpose: >-
+  Trace the public Agent Baseline draft to the existing independent common-control
+  architecture. Source identifiers are references only and do not become a parallel
+  control authority.
+interpretation:
+  authority: data/controls.yaml remains the sole control authority.
+  adoption: Apply existing risk tier and autonomy facts when selecting and scaling controls.
+  later_maturity: Multidimensional agent assurance classification is optional and is not required by this crosswalk.
+  source_status: Reassess the crosswalk when Agent Baseline changes or leaves draft status.
+
+mappings:
+  - {source_control: DIS-01, canonical_controls: [AI-GOV-003], coverage: normalized, rationale: "Stable agent identity belongs in the enterprise AI inventory control."}
+  - {source_control: DIS-02, canonical_controls: [AI-GOV-003, AI-GOV-004], coverage: normalized, rationale: "Ownership and risk context remain inventory and assessment attributes."}
+  - {source_control: DIS-03, canonical_controls: [AI-INV-003, AI-GOV-008], coverage: normalized, rationale: "Lifecycle, decision history, and expiring exceptions use existing lifecycle and exception authorities."}
+  - {source_control: DIS-04, canonical_controls: [AI-INV-002, AI-VSC-003], coverage: normalized, rationale: "Components are dependencies governed through inventory and integrity controls."}
+  - {source_control: DIS-05, canonical_controls: [AI-INV-002, AI-VSC-003], coverage: normalized, rationale: "Approved and observed compositions are dependency and integrity records."}
+  - {source_control: DIS-06, canonical_controls: [AI-AGT-001, AI-SEC-002, AI-INV-002], coverage: normalized, rationale: "Effective access joins delegated authority, least privilege, and dependency documentation."}
+  - {source_control: DIS-07, canonical_controls: [AI-INV-001], coverage: normalized, rationale: "Automated discovery is a method within inventory reconciliation."}
+  - {source_control: CON-01, canonical_controls: [AI-LCM-002, AI-LCM-003, AI-VSC-003], coverage: normalized, rationale: "Admission is enforced through release readiness, change control, and component integrity."}
+  - {source_control: CON-02, canonical_controls: [AI-SEC-001, AI-AGT-002, AI-SEC-006], coverage: normalized, rationale: "Dangerous capability combinations are addressed by threat modeling, bounded tools, and resource controls."}
+  - {source_control: CON-03, canonical_controls: [AI-AGT-002, AI-SEC-001, AI-SEC-006], coverage: normalized, rationale: "Confinement is a runtime capability boundary supported by architecture and resource limits."}
+  - {source_control: CON-04, canonical_controls: [AI-AGT-002, AI-AGT-001], coverage: normalized, rationale: "Capability profiles implement bounded tools and delegated authority."}
+  - {source_control: AUT-01, canonical_controls: [AI-AGT-001, AI-OPS-001], coverage: normalized, rationale: "Identity and action attribution are split between authority and trace evidence."}
+  - {source_control: AUT-02, canonical_controls: [AI-AGT-001, AI-AGT-002], coverage: normalized, rationale: "Purpose and task bounds are delegated authority enforced through capability boundaries."}
+  - {source_control: AUT-03, canonical_controls: [AI-AGT-005, AI-AGT-001], coverage: normalized, rationale: "Delegation attenuation is a multi-agent authority requirement."}
+  - {source_control: AUT-04, canonical_controls: [AI-SEC-002, AI-AGT-001], coverage: normalized, rationale: "Short-lived credentials implement least privilege and bounded delegation."}
+  - {source_control: AUT-05, canonical_controls: [AI-AGT-003], coverage: normalized, rationale: "Independent approval is the existing consequential-action safeguard."}
+  - {source_control: AUT-06, canonical_controls: [AI-AGT-002, AI-AGT-006], coverage: normalized, rationale: "Fail-closed authorization uses external enforcement and independent interruption."}
+  - {source_control: AUT-07, canonical_controls: [AI-SEC-002, AI-AGT-003], coverage: normalized, rationale: "Step-up verification is an authentication and approval safeguard."}
+  - {source_control: AUT-08, canonical_controls: [AI-GOV-008, AI-AGT-001, AI-AGT-003], coverage: normalized, rationale: "Temporary elevation uses exception governance, bounded authority, and independent approval."}
+  - {source_control: AUT-09, canonical_controls: [AI-SEC-002, AI-AGT-001], coverage: normalized, rationale: "Proof of possession strengthens the identity used for delegated authority."}
+  - {source_control: OBS-01, canonical_controls: [AI-OPS-001], coverage: normalized, rationale: "Agent-native telemetry is part of logging and traceability."}
+  - {source_control: OBS-02, canonical_controls: [AI-OPS-001, AI-AGT-005], coverage: normalized, rationale: "Stable correlation spans operational traces and delegation hops."}
+  - {source_control: OBS-03, canonical_controls: [AI-OPS-002], coverage: normalized, rationale: "Behavior and drift detection belongs in production monitoring."}
+  - {source_control: OBS-04, canonical_controls: [AI-OPS-002, AI-SEC-004], coverage: normalized, rationale: "Unintended permitted actions require behavioral detection and safe output handling."}
+  - {source_control: OBS-05, canonical_controls: [AI-OPS-001], coverage: normalized, rationale: "Intent-to-outcome evidence is an end-to-end trace requirement."}
+  - {source_control: OBS-06, canonical_controls: [AI-OPS-001, AI-OPS-003], coverage: normalized, rationale: "Evidence protection supports routine traceability and incident preservation."}
+  - {source_control: VAL-01, canonical_controls: [AI-LCM-002, AI-SEC-005], coverage: normalized, rationale: "Agent-specific testing uses existing release and security-testing controls."}
+  - {source_control: VAL-02, canonical_controls: [AI-SEC-005, AI-LCM-002, AI-VSC-003], coverage: normalized, rationale: "First-party component testing follows secure development, validation, and integrity controls."}
+  - {source_control: VAL-03, canonical_controls: [AI-SEC-005, AI-SEC-004], coverage: normalized, rationale: "Agent-generated artifacts receive the checks applicable to other code, configuration, and output."}
+  - {source_control: VAL-04, canonical_controls: [AI-LCM-002, AI-USE-003, AI-HUM-001], coverage: normalized, rationale: "Outcome validation combines lifecycle acceptance, verification, and proportionate oversight."}
+  - {source_control: RES-01, canonical_controls: [AI-AGT-006, AI-OPS-003], coverage: normalized, rationale: "Stop and revocation are containment and incident-response actions."}
+  - {source_control: RES-02, canonical_controls: [AI-AGT-006, AI-VSC-003], coverage: normalized, rationale: "Version and component quarantine uses containment and component-integrity controls."}
+  - {source_control: RES-03, canonical_controls: [AI-OPS-003, AI-INV-002], coverage: normalized, rationale: "Impact scoping depends on preserved incident evidence and dependency records."}
+  - {source_control: RES-04, canonical_controls: [AI-OPS-004, AI-AGT-006], coverage: normalized, rationale: "Safe failure and non-agent fallback use resilience and containment controls."}
+  - {source_control: RES-05, canonical_controls: [AI-VSC-003, AI-LCM-003, AI-AGT-006], coverage: normalized, rationale: "Rug-pull protection combines integrity, material-change, and quarantine controls."}

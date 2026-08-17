@@ -8,6 +8,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 CONTROL_FILE = ROOT / "data" / "controls.yaml"
 MAPPING_FILE = ROOT / "data" / "mappings.yaml"
+AGENT_BASELINE_CROSSWALK_FILE = ROOT / "data" / "agent-baseline-crosswalk.yaml"
 
 REQUIRED_FIELDS = {
     "control_id",
@@ -132,6 +133,21 @@ def test_mappings_are_unique():
         for m in mappings
     }
     assert len(keys) == len(mappings)
+
+
+def test_agent_baseline_crosswalk_is_complete_and_non_authoritative():
+    controls = {control["control_id"] for control in load_library()["controls"]}
+    with AGENT_BASELINE_CROSSWALK_FILE.open(encoding="utf-8") as stream:
+        crosswalk = yaml.safe_load(stream)
+
+    assert crosswalk["source"]["version"] == "1.0-draft"
+    assert crosswalk["source"]["status"] == "draft"
+    assert crosswalk["interpretation"]["authority"] == "data/controls.yaml remains the sole control authority."
+    mappings = crosswalk["mappings"]
+    assert len(mappings) == 35
+    assert len({mapping["source_control"] for mapping in mappings}) == 35
+    assert all(mapping["coverage"] == "normalized" for mapping in mappings)
+    assert all(set(mapping["canonical_controls"]) <= controls for mapping in mappings)
 
 
 def test_human_readable_catalog_is_current():
