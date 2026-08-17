@@ -1,8 +1,8 @@
 schema_version: '2.1'
 library:
   name: Independent AI Control Library
-  version: 1.1.0
-  status: published
+  version: 1.2.0
+  status: draft
   description: An independently authored enterprise AI control library covering organizational AI governance,
     workforce use, AI systems, models, platforms, agents, data, operations, and third parties. Each control
     includes structured, machine-readable applicability metadata. The metadata expresses control authority;
@@ -20,6 +20,7 @@ reference_catalog:
   OWASP-LLM: OWASP Top 10 for LLM Applications 2025
   OWASP-AGENTIC: OWASP Top 10 for Agentic Applications 2026
   OWASP-AGENTIC-STATE: OWASP State of Agentic AI Security and Governance
+  AGENT-BASELINE-V1-DRAFT: Agent Baseline v1.0-draft, source commit 8954684dd3221ae0613a55dabfc1b6bc10d23705
 controls:
 - control_id: AI-GOV-001
   domain: administrative_governance
@@ -85,8 +86,8 @@ controls:
   title: AI inventory and accountable ownership
   objective: Maintain visibility and accountability throughout the AI portfolio.
   requirement: The organization shall maintain a versioned inventory of AI systems and material AI use
-    cases, with a named business owner, system owner, purpose, lifecycle state, deployment context, model
-    or service dependencies, data categories, and current review status.
+    cases, with a stable identifier, named business owner, system owner, purpose, lifecycle state, deployment
+    context, model or service dependencies, data categories, and current review status.
   applicability: Applies to proposed, experimental, production, embedded, vendor-provided, and materially
     changed AI uses.
   evidence_examples:
@@ -102,6 +103,7 @@ controls:
   - ISO-IEC-42001
   - ISO-IEC-23894
   - OWASP-AGENTIC-STATE
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - general_ai_usage
@@ -380,7 +382,8 @@ controls:
   objective: Reduce exploitable defects and unsafe changes across the AI system lifecycle.
   requirement: AI systems shall follow a secure development and change process that includes code and
     configuration review, dependency analysis, secrets protection, security testing, vulnerability remediation,
-    environment separation, and release approval.
+    environment separation, release approval, and equivalent security, quality, and license checks for code
+    or configuration artifacts created or modified by agents.
   applicability: Applies to internally developed code and configurations and to material integration or
     customization of third-party AI.
   evidence_examples:
@@ -390,12 +393,14 @@ controls:
   - penetration tests
   - remediation tickets
   - release approvals
+  - agent-generated artifact test results
   implementation_notes: Include prompts, orchestration, retrieval pipelines, model configuration, infrastructure,
     and policy-as-code artifacts.
   references:
   - OWASP-LLM
   - OWASP-AGENTIC
   - NIST-AI-RMF
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -655,9 +660,11 @@ controls:
   layer: ai_system
   title: Evaluation, validation, and release readiness
   objective: Demonstrate that the AI system performs acceptably and fails within understood boundaries.
-  requirement: Before release, the AI system shall be evaluated using representative and adversarial scenarios
-    against approved criteria for task performance, security, privacy, safety, reliability, harmful content,
-    bias or impact, human oversight, and recovery as relevant.
+  requirement: Before release, each exact AI system version shall be evaluated in its intended configuration
+    and operating context using representative and adversarial scenarios against approved criteria for task
+    performance, security, privacy, safety, reliability, harmful content, bias or impact, human oversight,
+    and recovery as relevant. Material outcomes shall also be subject to defined post-action validation, with
+    pre-finalization checks for high-impact or difficult-to-reverse actions.
   applicability: Applies before initial production use and material releases; test depth follows context
     and potential impact.
   evidence_examples:
@@ -668,6 +675,8 @@ controls:
   - limitations
   - release decision
   - unresolved issue log
+  - exact-version evidence
+  - outcome-validation records
   implementation_notes: Separate model benchmarks from end-to-end system validation and document test
     representativeness and uncertainty.
   references:
@@ -676,6 +685,7 @@ controls:
   - ISO-IEC-42001
   - OWASP-LLM
   - OWASP-AGENTIC
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -779,8 +789,9 @@ controls:
   title: Agent identity and delegated authority
   objective: Make each agent accountable and restrict its authority to an approved purpose.
   requirement: Each agent shall use an attributable non-human identity and operate under explicitly delegated
-    authority that defines allowed objectives, data, tools, actions, environments, duration, and escalation
-    conditions, with privileges no broader than the initiating user and approved service role require.
+    authority that binds approved purpose, task, target resources, data, tools, actions, environments, limits,
+    validity period, and escalation conditions, with privileges no broader than the initiating principal and
+    approved service role require.
   applicability: Applies when AI can plan, invoke tools, access services, communicate with agents, or
     execute actions beyond content generation.
   evidence_examples:
@@ -789,13 +800,17 @@ controls:
   - delegation policy
   - access matrix
   - scoped tokens
+  - short-lived credential records
+  - proof-of-possession configuration
   - privilege reviews
   implementation_notes: Preserve the chain from human or service principal to agent and downstream action;
-    prohibit privilege laundering.
+    prohibit privilege laundering. Prefer short-lived, resource-scoped credentials or action permits kept
+    outside model context and bind them to the authorized holder where the platform supports it.
   references:
   - OWASP-AGENTIC
   - OWASP-AGENTIC-STATE
   - NIST-AI-600-1
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -836,9 +851,10 @@ controls:
   layer: ai_system
   title: Tool, connector, and action boundaries
   objective: Prevent agents from using capabilities or parameters outside approved scope.
-  requirement: Agent tools, connectors, APIs, destinations, operations, and parameters shall be allowlisted
-    and enforced outside the model, with least privilege, schema validation, transaction and rate limits,
-    environment separation, and denial by default.
+  requirement: Agent tools, connectors, APIs, destinations, operations, parameters, runtime resources, and
+    credential delivery shall be governed through bounded, versioned capability profiles and enforced outside
+    the model, with least privilege, schema validation, transaction and rate limits, isolated execution where
+    appropriate, environment separation, and denial by default when required context cannot be verified.
   applicability: Applies to every agent with tool, connector, plugin, code-execution, messaging, workflow,
     or system access.
   evidence_examples:
@@ -848,12 +864,15 @@ controls:
   - policy tests
   - denied-action logs
   - transaction limits
+  - capability profile assignments
+  - confinement tests
   implementation_notes: Expose narrow task-specific functions instead of general shells, broad APIs, or
     unrestricted browsers where practical.
   references:
   - OWASP-AGENTIC
   - OWASP-AGENTIC-STATE
   - OWASP-LLM
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -891,9 +910,11 @@ controls:
   layer: ai_system
   title: Human approval and irreversible-action safeguards
   objective: Preserve meaningful human control over consequential or difficult-to-reverse actions.
-  requirement: Agents shall require authenticated, informed human approval before defined high-impact,
-    externally binding, privileged, destructive, financial, safety-relevant, or difficult-to-reverse actions,
-    and the approval interface shall present the proposed action, basis, scope, and consequences.
+  requirement: Agents shall require an authenticated, informed decision independent of the requesting agent
+    before defined high-impact, externally binding, privileged, destructive, financial, safety-relevant, or
+    difficult-to-reverse actions. The decision interface shall present the proposed action, basis, scope, and
+    consequences and shall support step-up verification or temporary, automatically expiring authority when
+    current session or delegation assurance is insufficient.
   applicability: Applies when agents can modify records, send communications, execute code, make commitments,
     move value, affect rights, or change production systems.
   evidence_examples:
@@ -903,12 +924,15 @@ controls:
   - approval logs
   - separation-of-duties review
   - bypass tests
+  - step-up verification records
+  - temporary elevation records
   implementation_notes: Avoid approval fatigue, bundled approvals, self-approval, and prompts that conceal
     the actual tool parameters or destination.
   references:
   - OWASP-AGENTIC
   - OWASP-AGENTIC-STATE
   - NIST-AI-RMF
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -985,8 +1009,9 @@ controls:
   title: Multi-agent and delegation controls
   objective: Bound authority propagation and cascading behavior across interacting agents.
   requirement: Multi-agent systems shall authenticate participants, validate messages, restrict which
-    agents may delegate or receive tasks, prevent authority expansion, limit recursion and propagation,
-    and preserve traceability across task handoffs and resulting actions.
+    agents may delegate or receive tasks, prevent authority expansion, preserve originating context, record
+    each delegation hop, limit recursion and propagation, and preserve traceability across task handoffs and
+    resulting actions.
   applicability: Applies when agents communicate, delegate, coordinate, negotiate, or invoke other autonomous
     or semi-autonomous agents.
   evidence_examples:
@@ -1002,6 +1027,7 @@ controls:
   references:
   - OWASP-AGENTIC
   - OWASP-AGENTIC-STATE
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1022,9 +1048,9 @@ controls:
   layer: ai_system
   title: Agent containment and emergency stop
   objective: Limit harmful activity and restore control when agent behavior deviates from approved boundaries.
-  requirement: Agentic systems shall provide independently enforceable containment, credential revocation,
-    action interruption, quarantine, rollback, and emergency-disable mechanisms that operators can invoke
-    without relying on the affected model or agent.
+  requirement: Agentic systems shall provide independently enforceable containment, credential and delegated
+    grant revocation, action interruption, version and component quarantine, rollback, and emergency-disable
+    mechanisms that operators can invoke without relying on the affected model or agent.
   applicability: Applies to agents with production access, material reach, autonomous action, privileged
     tools, or difficult-to-reverse effects.
   evidence_examples:
@@ -1034,12 +1060,14 @@ controls:
   - rollback exercise
   - operator runbook
   - recovery results
+  - component quarantine test
   implementation_notes: Test whether in-flight tasks, delegated agents, queued actions, and cached credentials
     actually stop.
   references:
   - OWASP-AGENTIC
   - OWASP-AGENTIC-STATE
   - NIST-AI-600-1
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1088,9 +1116,11 @@ controls:
   layer: ai_system
   title: Logging and traceability
   objective: Reconstruct material AI decisions, interactions, and actions without excessive collection.
-  requirement: The AI system shall generate protected, time-synchronized records sufficient to trace material
-    inputs, outputs, identities, model and configuration versions, retrieval sources, tool calls, approvals,
-    actions, policy decisions, and errors, subject to minimization and retention controls.
+  requirement: The AI system shall generate protected, time-synchronized, completeness-checked records with
+    stable run or trace identifiers sufficient to correlate initiating principal, agent, deployment, runtime
+    composition, task, inputs, outputs, model and configuration versions, retrieval sources, delegated
+    authority, tool calls, targets, approvals, requested and executed actions, policy decisions, results,
+    outcomes, cost, and errors, subject to minimization and retention controls.
   applicability: Applies to production systems; scope increases for consequential, external, privileged,
     or agentic use.
   evidence_examples:
@@ -1100,6 +1130,8 @@ controls:
   - retention settings
   - access reviews
   - reconstruction exercise
+  - cross-system correlation test
+  - completeness check results
   implementation_notes: Do not indiscriminately log sensitive prompts or outputs; use structured metadata,
     redaction, and tiered access where appropriate.
   references:
@@ -1107,6 +1139,7 @@ controls:
   - NIST-AI-600-1
   - OWASP-AGENTIC-STATE
   - OWASP-LLM
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1121,8 +1154,9 @@ controls:
   title: Behavioral and control monitoring
   objective: Detect drift, misuse, failures, and operation outside approved boundaries.
   requirement: Production AI systems shall be monitored using defined indicators, thresholds, and review
-    responsibilities for performance, harmful or anomalous behavior, access, tool use, policy violations,
-    data exposure, control failure, dependency health, and changing risk conditions.
+    responsibilities for performance, harmful or anomalous behavior, access, tool use, destinations, resource
+    consumption, policy violations, data exposure, control failure, dependency health, changing risk conditions,
+    and actions that are permitted but materially inconsistent with approved purpose or task.
   applicability: Applies to production systems; near-real-time monitoring is expected where delayed detection
     could materially increase harm.
   evidence_examples:
@@ -1140,6 +1174,7 @@ controls:
   - NIST-AI-600-1
   - OWASP-AGENTIC-STATE
   - ISO-IEC-42001
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1188,9 +1223,9 @@ controls:
   layer: ai_system
   title: Resilience, safe failure, and recovery
   objective: Maintain acceptable outcomes when models, data, tools, providers, or controls fail.
-  requirement: The AI system shall define and test safe-failure behavior, dependency timeouts, fallback
-    or manual procedures, backup and restoration where relevant, rollback, reconciliation, recovery objectives,
-    and criteria for degraded operation or suspension.
+  requirement: The AI system shall define and test safe-failure behavior, dependency timeouts, approved
+    non-agent or manual fallback procedures where continuity requires them, backup and restoration where
+    relevant, rollback, reconciliation, recovery objectives, and criteria for degraded operation or suspension.
   applicability: Applies when AI supports material operations, external services, automated action, or
     processes with availability or integrity requirements.
   evidence_examples:
@@ -1208,6 +1243,7 @@ controls:
   - ISO-IEC-42001
   - ISO-IEC-23894
   - OWASP-AGENTIC
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1322,9 +1358,11 @@ controls:
   layer: ai_system
   title: Component provenance and integrity
   objective: Reduce compromise, tampering, and unknown risk in AI components and dependencies.
-  requirement: Models, datasets, libraries, containers, plugins, extensions, prompts, and other material
-    components shall come from approved sources, have documented versions and provenance, be integrity-checked
-    where feasible, and undergo security, license, and risk review before use or update.
+  requirement: Models, datasets, libraries, containers, plugins, extensions, prompts, agent instructions,
+    tool definitions, requested permissions, and other material components shall come from approved sources,
+    have documented and runtime-resolved versions and provenance, be integrity-checked where feasible, and
+    undergo security, license, and risk review before use or update. Unapproved or integrity-breaking changes
+    shall be blocked or quarantined.
   applicability: Applies to externally sourced, open-source, pretrained, downloaded, imported, or dynamically
     loaded components.
   evidence_examples:
@@ -1335,12 +1373,15 @@ controls:
   - licenses
   - approval records
   - update history
+  - runtime composition record
+  - blocked-change or quarantine record
   implementation_notes: Maintain an AI bill of materials appropriate to the system and address mutable
     tags, remote code, unsafe serialization, and abandoned packages.
   references:
   - OWASP-LLM
   - OWASP-AGENTIC
   - NIST-AI-600-1
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1670,8 +1711,9 @@ controls:
   title: AI discovery and inventory reconciliation
   objective: Identify unregistered and materially incomplete AI use.
   requirement: The organization shall use proportionate discovery methods to identify AI services, embedded
-    features, models, endpoints, agents, connectors, and material use cases and reconcile findings to
-    the approved inventory.
+    features, models, endpoints, agents, components, connectors, and material use cases across source, cloud,
+    endpoint, identity, SaaS, gateway, network, and runtime evidence and reconcile findings to the approved
+    inventory.
   applicability: Applies across technology, procurement, cloud, SaaS, development, and workforce environments.
   evidence_examples:
   - discovery method
@@ -1684,6 +1726,7 @@ controls:
   references:
   - NIST-AI-RMF
   - OWASP-AGENTIC-STATE
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - general_ai_usage
@@ -1699,7 +1742,9 @@ controls:
   title: AI resource and dependency documentation
   objective: Record the resources required to develop, operate, oversee, change, and retire AI.
   requirement: Each material AI system shall document its data, models, prompts, tools, integrations,
-    compute, environments, identities, human competencies, suppliers, and operational dependencies.
+    compute, environments, identities and effective access, human competencies, suppliers, downstream agents,
+    and operational dependencies, including approved and observed runtime composition where agentic components
+    can resolve dynamically.
   applicability: Applies throughout the lifecycle of material AI systems and agents.
   evidence_examples:
   - system record
@@ -1707,10 +1752,13 @@ controls:
   - dependency inventory
   - AI bill of materials
   - responsibility matrix
+  - effective-access map
+  - runtime composition map
   implementation_notes: Link records to versions and owners so changes can trigger targeted reassessment.
   references:
   - ISO-IEC-42001
   - NIST-AI-RMF
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system
@@ -1725,8 +1773,9 @@ controls:
   layer: ai_system
   title: AI lifecycle status and review
   objective: Keep inventory decisions aligned with actual system status and business need.
-  requirement: AI systems shall have controlled lifecycle states, review dates, approval status, and criteria
-    for experimentation, production, suspension, decommissioning, and archival.
+  requirement: AI systems shall have controlled lifecycle states, review dates, approval and exception status,
+    accountable exception owners and expiry dates, retained decision history, and criteria for experimentation,
+    production, suspension, decommissioning, and archival.
   applicability: Applies to proposed, experimental, approved, production, suspended, and retired AI.
   evidence_examples:
   - lifecycle state model
@@ -1734,10 +1783,13 @@ controls:
   - periodic attestation
   - suspension record
   - retirement approval
+  - decision history
+  - exception expiry report
   implementation_notes: Expired experiments and ownerless systems should not remain implicitly authorized.
   references:
   - ISO-IEC-42001
   - NIST-AI-RMF
+  - AGENT-BASELINE-V1-DRAFT
   applicability_metadata:
     contexts:
     - ai_system

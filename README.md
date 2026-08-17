@@ -1,6 +1,6 @@
 # AI Governance Control Framework
 
-Version 1.1 adds structured applicability metadata to every v1.0 control while retaining the original human-readable applicability statement. The framework declares when a control is relevant; consuming applications remain responsible for evaluating facts and producing decisions.
+Version 1.2 normalizes the public Agent Baseline v1.0-draft concepts into the existing common-control architecture. It adds no parallel Agent Baseline controls and does not replace the current applicability model.
 
 See [Applicability metadata](docs/applicability-metadata.md) for the machine-readable contract and compatibility guidance.
 
@@ -19,6 +19,7 @@ This repository is the authoritative source for the framework and control librar
 - [Changelog](CHANGELOG.md): version history and compatibility notes
 - [`data/controls.yaml`](data/controls.yaml): authoritative 70-control library
 - [`data/mappings.yaml`](data/mappings.yaml): optional, high-confidence requirement and guideline mappings
+- [`data/agent-baseline-crosswalk.yaml`](data/agent-baseline-crosswalk.yaml): non-authoritative traceability from all 35 Agent Baseline v1.0-draft controls to existing canonical controls
 - [Reference mappings](mappings/control-reference-mapping.md): human-readable mapping methodology and catalog
 - [Synthetic assessment example](examples/sample-control-assessment.yaml): non-production usage example
 
@@ -34,10 +35,11 @@ python -m pip install "ai-governance-control-framework @ git+https://github.com/
 Consumers can read the packaged artifact without modifying it:
 
 ```python
-from ai_governance_control_framework import controls_bytes, mappings_bytes
+from ai_governance_control_framework import agent_baseline_crosswalk_bytes, controls_bytes, mappings_bytes
 
 artifact = controls_bytes()
 optional_mappings = mappings_bytes()
+agent_baseline_traceability = agent_baseline_crosswalk_bytes()
 ```
 
 The build includes the bytes from `data/controls.yaml`. Tests verify that the packaged resource
@@ -67,6 +69,6 @@ python scripts/render_mapping_catalog.py
 
 ## Status
 
-**Version 1.0 is published.** The baseline contains 70 enterprise AI controls across 12 domains and 42 optional, high-confidence mappings. Organization-specific tailoring, legal and standards interpretation, formal organizational approval, and operational implementation remain the responsibility of each adopter.
+**Version 1.2 is in draft.** The library retains 70 enterprise AI controls across 12 domains, adds Agent Baseline traceability without creating duplicate authority, and leaves organization-specific tiering, tailoring, approval, and implementation to each adopter.
 
 Licensed under the MIT License. See [LICENSE](LICENSE).

@@ -15,6 +15,14 @@ These sources inform the framework's terminology, control themes, lifecycle fram
 - National Institute of Standards and Technology. [*Artificial Intelligence Risk Management Framework (AI RMF 1.0)*, NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1), January 2023.
 - National Institute of Standards and Technology. [*Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*, NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1), July 2024.
 
+## Agent Baseline
+
+- Agent Baseline contributors. [*Agent Baseline v1.0-draft*](https://github.com/agentbaseline/agentbaseline), canonical `whitepaper/controls.yaml` at commit `8954684dd3221ae0613a55dabfc1b6bc10d23705`, reviewed August 2026.
+
+Agent Baseline remains a draft and its control content is licensed CC BY-SA 4.0. This framework's
+control language remains independently authored. The separate crosswalk retains source identifiers
+for traceability and does not make Agent Baseline a second control authority.
+
 ## ISO and IEC
 
 - ISO/IEC. [*ISO/IEC 42001:2023, Information technology, Artificial intelligence, Management system*](https://www.iso.org/standard/42001).
