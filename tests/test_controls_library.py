@@ -51,6 +51,8 @@ def test_control_library_schema_and_unique_ids():
     reference_keys = set(library["reference_catalog"])
 
     assert library["schema_version"] == "2.1"
+    assert library["library"]["version"] == "1.2.0"
+    assert library["library"]["status"] == "published"
     assert controls
     assert len({control["control_id"] for control in controls}) == len(controls)
 

@@ -2,7 +2,7 @@ schema_version: '2.1'
 library:
   name: Independent AI Control Library
   version: 1.2.0
-  status: draft
+  status: published
   description: An independently authored enterprise AI control library covering organizational AI governance,
     workforce use, AI systems, models, platforms, agents, data, operations, and third parties. Each control
     includes structured, machine-readable applicability metadata. The metadata expresses control authority;

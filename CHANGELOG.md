@@ -1,12 +1,13 @@
 # Changelog
 
-## 1.2.0 - Draft
+## 1.2.0 - 2026-09-16
 
 - Normalized all 35 Agent Baseline v1.0-draft controls into the existing common-control architecture.
 - Added a non-authoritative, machine-readable crosswalk pinned to the reviewed Agent Baseline commit.
 - Strengthened existing inventory, lifecycle, agent authority, containment, telemetry, validation, component integrity, and recovery requirements without adding parallel controls.
 - Preserved the 70 canonical control IDs and kept risk-tier selection and autonomy decisions outside this repository.
 - Added Agent Baseline source, draft-status, attribution, and reassessment notices.
+- Published the independent framework while retaining the Agent Baseline source and non-authoritative crosswalk at their draft status.
 
 ## 1.1.0
 

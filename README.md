@@ -69,6 +69,6 @@ python scripts/render_mapping_catalog.py
 
 ## Status
 
-**Version 1.2 is in draft.** The library retains 70 enterprise AI controls across 12 domains, adds Agent Baseline traceability without creating duplicate authority, and leaves organization-specific tiering, tailoring, approval, and implementation to each adopter.
+**Version 1.2 is published.** The library retains 70 enterprise AI controls across 12 domains, adds non-authoritative Agent Baseline draft traceability without creating duplicate authority, and leaves organization-specific tiering, tailoring, approval, and implementation to each adopter. The source crosswalk remains explicitly draft and must be reassessed if Agent Baseline changes or leaves draft status.
 
 Licensed under the MIT License. See [LICENSE](LICENSE).

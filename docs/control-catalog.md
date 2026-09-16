@@ -6,7 +6,7 @@ This is the human-readable view of the authoritative [`data/controls.yaml`](../d
 - **Library:** Independent AI Control Library
 - **Library version:** `1.2.0`
 - **Schema version:** `2.1`
-- **Status:** `draft`
+- **Status:** `published`
 - **Controls:** 70
 
 ## Contents
