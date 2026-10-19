@@ -8,6 +8,14 @@ from pathlib import Path
 import yaml
 
 
+SOURCE_URLS = {
+    "ISO-IEC-42001": "https://www.iso.org/standard/42001",
+    "ISO-IEC-27001": "https://www.iso.org/standard/27001",
+    "EU-AI-ACT": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    "DORA": "https://eur-lex.europa.eu/eli/reg/2022/2554/oj",
+    "SOC-2": "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+}
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "mappings.yaml"
 OUTPUT = ROOT / "mappings" / "control-reference-mapping.md"
@@ -45,7 +53,7 @@ def render(mapping_library: dict) -> str:
     for item in mappings:
         condition = item.get("condition", "None stated")
         values = [
-            item["control_id"], item["framework"], f"{item['edition']}: {item['reference']}",
+            item["control_id"], f"[{item['framework']}]({SOURCE_URLS[item['framework']]})", f"{item['edition']}: {item['reference']}",
             item["category"], item["basis"], condition, item["rationale"],
         ]
         escaped = [str(value).replace("|", "\\|").replace("\n", " ") for value in values]

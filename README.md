@@ -1,5 +1,11 @@
 # AI Governance Control Framework
 
+Explore the [control catalog](docs/control-catalog.md), download [the offline searchable browser](docs/control-browser.html), or follow the [worked synthetic assessment](examples/sample-control-assessment.yaml). The [Control Plane demonstration](https://github.com/danvanbeeksec/ai-governance-control-plane) shows how these requirements become reviewable decisions.
+
+The browser is a generated, standalone HTML file. Download it and open it locally to search by topic, domain, and context. It reads no external data and creates no separate control authority.
+
+Package 1.2.1 adds validation and adoption tools around the unchanged published 1.2.0 control library. It is a candidate update until reviewed and released.
+
 Version 1.2 normalizes the public Agent Baseline v1.0-draft concepts into the existing common-control architecture. It adds no parallel Agent Baseline controls and does not replace the current applicability model.
 
 See [Applicability metadata](docs/applicability-metadata.md) for the machine-readable contract and compatibility guidance.
@@ -72,3 +78,11 @@ python scripts/render_mapping_catalog.py
 **Version 1.2 is published.** The library retains 70 enterprise AI controls across 12 domains, adds non-authoritative Agent Baseline draft traceability without creating duplicate authority, and leaves organization-specific tiering, tailoring, approval, and implementation to each adopter. The source crosswalk remains explicitly draft and must be reassessed if Agent Baseline changes or leaves draft status.
 
 Licensed under the MIT License. See [LICENSE](LICENSE).
+
+## Reusable validation
+
+Install `.[validation]` from a checkout, then run `validate-ai-control-library`. Use `--directory /path/to/data` to validate a tailored artifact set without altering the baseline. The packaged [JSON Schema](schemas/library.schema.json) describes structure; the validator also checks references, taxonomy membership, duplicate IDs, and consistency between modes and triggers.
+
+The worked example separates applicability, implementation, and assurance. Its fictional inventory record does not establish operating effectiveness. Preserve those distinctions in organizational overlays.
+
+Regenerate the offline browser with `python scripts/render_control_browser.py`. CI checks for drift and validates the installed wheel outside the checkout.
