@@ -45,4 +45,4 @@ def test_worked_example_uses_current_library_and_separate_assurance():
     assert example["assessment"]["framework_version"] == artifacts()[0]["library"]["version"]
     for control in example["assessment"]["controls"]:
         assert control["assurance_state"] == "not_tested"
-        assert "implementation_state" in control
+        assert control["implementation_state"] in artifacts()[2]["implementation_states"]
