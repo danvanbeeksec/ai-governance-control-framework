@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/danvanbeeksec/ai-governance-control-framework/schemas/library.schema.json",
+  "$defs": {
+    "controls": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "2.1"
+        },
+        "library": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "name",
+            "version",
+            "status",
+            "description",
+            "limitations"
+          ],
+          "additionalProperties": true
+        },
+        "reference_catalog": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "control_id": {
+                "type": "string",
+                "pattern": "^AI-[A-Z]+-[0-9]{3}$"
+              },
+              "domain": {
+                "enum": [
+                  "administrative_governance",
+                  "agentic_ai",
+                  "data_privacy",
+                  "human_oversight_transparency",
+                  "inventory_lifecycle",
+                  "lifecycle",
+                  "monitoring_operations",
+                  "risk_impact_compliance",
+                  "systems_models_platforms",
+                  "technical_security",
+                  "usage_workforce",
+                  "vendor_supply_chain"
+                ]
+              },
+              "layer": {
+                "enum": [
+                  "enterprise",
+                  "ai_system",
+                  "both"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "objective": {
+                "type": "string",
+                "minLength": 1
+              },
+              "requirement": {
+                "type": "string",
+                "minLength": 1
+              },
+              "applicability": {
+                "type": "string",
+                "minLength": 1
+              },
+              "implementation_notes": {
+                "type": "string",
+                "minLength": 1
+              },
+              "applicability_metadata": {
+                "type": "object",
+                "properties": {
+                  "contexts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "minItems": 1
+                  },
+                  "mode": {
+                    "enum": [
+                      "universal",
+                      "conditional",
+                      "human_determination"
+                    ]
+                  },
+                  "trigger_conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "all": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "operator": {
+                                "enum": [
+                                  "in",
+                                  "contains_any"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "uniqueItems": true,
+                                "minItems": 1
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 1
+                        }
+                      },
+                      "required": [
+                        "all"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 0
+                  },
+                  "required_inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "exclusions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "contexts",
+                  "mode",
+                  "trigger_conditions",
+                  "required_inputs",
+                  "exclusions",
+                  "rationale"
+                ],
+                "additionalProperties": false
+              },
+              "evidence_examples": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "control_id",
+              "domain",
+              "layer",
+              "title",
+              "objective",
+              "requirement",
+              "applicability",
+              "implementation_notes",
+              "applicability_metadata",
+              "evidence_examples",
+              "references"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "library",
+        "reference_catalog",
+        "controls"
+      ],
+      "additionalProperties": false
+    },
+    "mappings": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "allowed_bases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "publication_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "control_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "framework": {
+                "type": "string",
+                "minLength": 1
+              },
+              "edition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "enum": [
+                  "requirement",
+                  "guideline"
+                ]
+              },
+              "basis": {
+                "enum": [
+                  "source_supported",
+                  "inferred"
+                ]
+              },
+              "confidence": {
+                "const": "high"
+              },
+              "condition": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "control_id",
+              "framework",
+              "edition",
+              "reference",
+              "rationale",
+              "category",
+              "basis",
+              "confidence"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "schema_version",
+        "description",
+        "allowed_categories",
+        "allowed_bases",
+        "publication_rule",
+        "mappings"
+      ],
+      "additionalProperties": false
+    },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "object_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision_states": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "applicability_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "condition_operators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicability_states": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "implementation_states": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "assurance_states": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "object_types",
+        "triggers",
+        "decision_states",
+        "applicability_modes",
+        "condition_operators",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "crosswalk": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "object"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interpretation": {
+          "type": "object"
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_control": {
+                "type": "string",
+                "minLength": 1
+              },
+              "canonical_controls": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              },
+              "coverage": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "source_control",
+              "canonical_controls",
+              "coverage"
+            ],
+            "additionalProperties": true
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "source",
+        "purpose",
+        "interpretation",
+        "mappings"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

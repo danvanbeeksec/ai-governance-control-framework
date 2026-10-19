@@ -6,7 +6,7 @@ from importlib.resources import files
 from pathlib import Path
 
 
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 
 def controls_bytes() -> bytes:

@@ -30,7 +30,10 @@ triggers:
 decision_states: [applicable, not_applicable, planned, implemented, verified, exception]
 applicability_modes: [universal, conditional, human_determination]
 condition_operators: [in, contains_any]
+applicability_states: [applicable, not_applicable, undetermined]
+implementation_states: [planned, implemented, exception]
+assurance_states: [not_tested, design_reviewed, implementation_verified, operating_effectiveness_verified]
 note: >-
-  The v1.1 control records use this taxonomy for structured applicability metadata and
+  The v1.2 control records use this taxonomy for structured applicability metadata and
   retain readable applicability statements for backward compatibility. Consumers evaluate
   submitted facts; the framework does not make runtime decisions.

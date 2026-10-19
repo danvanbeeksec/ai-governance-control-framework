@@ -10,21 +10,26 @@ system:
   capabilities: [retrieval_augmented_generation]
   external_actions: false
 assessment:
-  framework_version: "0.1.0"
+  framework_version: "1.2.0"
   assessed_on: "2026-08-11"
   controls:
     - control_id: AI-GOV-003
       applicability: applicable
-      status: implemented
+      implementation_state: implemented
+      assurance_state: not_tested
       rationale: The pilot is within the defined AI inventory scope.
       evidence:
         - type: synthetic_inventory_record
           reference: EXAMPLE-EVIDENCE-001
+      evidence_acceptance_criteria: The fictional record identifies the system, owner, scope, and review date.
+      evidence_owner: Fictional Business Owner
+      review_frequency: Quarterly and after material change
       open_actions:
         - Verify inventory reconciliation before production release.
     - control_id: AI-AGT-002
       applicability: not_applicable
-      status: not_applicable
+      implementation_state: not_required
+      assurance_state: not_tested
       rationale: The fictional pilot has no tools, connectors, write access, or external actions.
       approval_reference: EXAMPLE-DECISION-001
 limitations:

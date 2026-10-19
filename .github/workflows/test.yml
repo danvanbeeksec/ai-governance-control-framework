@@ -1,0 +1,29 @@
+name: Validate library
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python: ['3.10', '3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pytest
+      - run: python scripts/render_control_browser.py --check
+      - run: python -m pip wheel '.[validation]' --no-deps --wheel-dir dist
+      - name: Validate installed wheel outside the checkout
+        run: |
+          python -m venv /tmp/framework-wheel
+          /tmp/framework-wheel/bin/pip install dist/*.whl 'PyYAML>=6,<7' 'jsonschema>=4.20,<5'
+          cd /tmp
+          /tmp/framework-wheel/bin/validate-ai-control-library

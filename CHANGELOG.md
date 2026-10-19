@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 candidate
+
+- Add packaged JSON Schema, reusable artifact validation, and clean-wheel CI.
+- Add an offline searchable catalog generated from the existing control authority.
+- Refresh the synthetic adoption example and separate applicability, implementation, and assurance states.
+- Preserve all 70 requirements and the published 1.2.0 controls artifact digest.
+
 ## 1.2.0 - 2026-09-16
 
 - Normalized all 35 Agent Baseline v1.0-draft controls into the existing common-control architecture.
